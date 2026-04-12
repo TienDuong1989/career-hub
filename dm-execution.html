@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Execution — Digital Marketing Manager</title>
+<style>
+:root{
+  --sand:#DCC7AA;--gold:#D4A017;--slate:#8299CA;--sage:#ADC2A3;--terra:#C68463;
+  --sand2:#E9DCCA;--gold2:#E1BD5D;--slate2:#A8B8DA;--sage2:#C5D4BF;--terra2:#D7A992;
+  --sand3:#EDE3D5;--slate3:#C1CCE4;--mauve3:#E1CBD3;
+  --bg:#FBF9F6;--bg2:#F6F1EA;--ink:#2C2318;--ink2:#5C4D3C;--ink3:#8C7B6A;--r:10px;
+  --attract-bg:#E6F1FB;--attract:#B5D4F4;--attract-t:#0C447C;
+  --engage-bg:#EAF3DE;--engage:#C5D4BF;--engage-t:#27500A;
+  --convert-bg:#F1E0D8;--convert:#D7A992;--convert-t:#5a2a10;
+  --authority-bg:#FAEEDA;--authority:#E1BD5D;--authority-t:#4a3000;
+  --inbound:#EAF3DE;--inbound-t:#27500A;--inbound-b:#C5D4BF;
+  --outbound:#E6F1FB;--outbound-t:#0C447C;--outbound-b:#B5D4F4;
+  --both-bg:#FAEEDA;--both-t:#4a3000;--both-b:#E1BD5D;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:14px}
+
+/* TOPBAR */
+.topbar{height:52px;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:20}
+.tb-left{display:flex;align-items:center;gap:10px}
+.tb-back{font-size:12px;color:rgba(255,255,255,.5);text-decoration:none}
+.tb-back:hover{color:#fff}
+.tb-name{font-size:13px;font-weight:700;color:#fff}
+.tb-sep{width:1px;height:16px;background:rgba(255,255,255,.15)}
+.tb-sub{font-size:11px;color:rgba(255,255,255,.35)}
+
+/* HERO */
+.hero{background:var(--ink);padding:28px 40px 24px}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(198,132,99,.15);border:1px solid rgba(198,132,99,.3);border-radius:20px;padding:3px 12px;font-size:10px;font-weight:700;color:var(--terra2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.hero h1{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:5px}
+.hero h1 em{font-style:normal;color:var(--terra2)}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;max-width:600px;margin-bottom:14px}
+.breadcrumb{display:flex;align-items:center;gap:7px;font-size:11px;flex-wrap:wrap}
+.bc-item{color:rgba(255,255,255,.3)}
+.bc-sep{color:rgba(255,255,255,.15)}
+.bc-current{color:rgba(255,255,255,.65);font-weight:600}
+
+/* TAB NAV */
+.tab-nav{background:#fff;border-bottom:2px solid var(--sand2);padding:0 40px;display:flex;align-items:stretch;gap:0;position:sticky;top:52px;z-index:15;overflow-x:auto}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-group{display:flex;align-items:stretch;padding-right:16px;margin-right:8px;border-right:1px solid var(--sand3);gap:2px}
+.tab-group:last-child{border-right:none}
+.tab-group-label{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);padding:0 6px;display:flex;align-items:center;white-space:nowrap}
+.tab-btn{padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink3);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .15s,border-color .15s;font-family:Arial,sans-serif;display:flex;align-items:center;gap:5px}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn.active{color:var(--terra);border-bottom-color:var(--terra)}
+.io-badge{font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;white-space:nowrap}
+.io-in{background:var(--inbound);color:var(--inbound-t)}
+.io-out{background:var(--outbound);color:var(--outbound-t)}
+.io-both{background:var(--both-bg);color:var(--both-t)}
+
+/* PAGE */
+.page{padding:20px 40px 72px;max-width:1200px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* FUNNEL STAGE BANNER — fixed across all tabs */
+.funnel-banner{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden;margin-bottom:20px}
+.funnel-banner-hdr{padding:9px 16px;background:var(--sand2);display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.funnel-banner-hdr-left{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2)}
+.funnel-banner-hdr-right{font-size:11px;color:var(--ink3)}
+.funnel-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.fstage{padding:12px 14px;border-right:1px solid var(--sand2)}
+.fstage:last-child{border-right:none}
+.fstage-attract{background:var(--attract-bg)}
+.fstage-engage{background:var(--engage-bg)}
+.fstage-convert{background:var(--convert-bg)}
+.fstage-authority{background:var(--authority-bg)}
+.fstage-name{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.fstage-attract .fstage-name{color:var(--attract-t)}
+.fstage-engage .fstage-name{color:var(--engage-t)}
+.fstage-convert .fstage-name{color:var(--convert-t)}
+.fstage-authority .fstage-name{color:var(--authority-t)}
+.fstage-equiv{font-size:10px;color:var(--ink3);font-style:italic;margin-bottom:6px}
+.fstage-items{font-size:11px;color:var(--ink2);line-height:1.75}
+
+/* SEC LABEL */
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.sec-label:first-child{margin-top:0}
+
+/* CHANNEL OVERVIEW GRID */
+.channel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ch-card{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden}
+.ch-card-top{padding:14px 16px 10px;border-bottom:1px solid var(--sand3)}
+.ch-card-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.ch-card-title{font-size:15px;font-weight:700;color:var(--ink)}
+.ch-card-body{padding:10px 16px 14px}
+.ch-card-desc{font-size:12px;color:var(--ink3);line-height:1.6;margin-bottom:10px}
+.ch-card-subs{display:flex;flex-direction:column;gap:4px}
+.ch-sub{font-size:11px;color:var(--ink2);padding:4px 8px;background:var(--bg2);border-radius:5px;display:flex;align-items:center;gap:6px}
+.ch-sub-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.rbadge{display:inline-flex;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.03em;white-space:nowrap}
+.b-core{background:var(--terra2);color:#5a2a10}
+.b-own{background:var(--sage2);color:#2a4a22}
+.b-cowork{background:var(--sage2);color:#2a4a22}
+.b-support{background:var(--sand3);color:var(--ink2)}
+
+/* INBOUND / OUTBOUND SPLIT */
+.io-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:0}
+.io-box{border-radius:var(--r);padding:14px 16px;border:1px solid}
+.io-box-in{background:var(--inbound);border-color:var(--inbound-b)}
+.io-box-out{background:var(--outbound);border-color:var(--outbound-b)}
+.io-box-title{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+.io-box-in .io-box-title{color:var(--inbound-t)}
+.io-box-out .io-box-title{color:var(--outbound-t)}
+.io-box-items{font-size:12px;color:var(--ink2);line-height:1.8}
+.io-box-items span{display:block}
+
+/* TABLE */
+.table-wrap{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden}
+.table-toolbar{padding:10px 14px;border-bottom:1px solid var(--sand2);display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--bg2)}
+.filter-btn{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;border:1px solid var(--sand2);background:#fff;cursor:pointer;transition:all .15s;color:var(--ink2);font-family:Arial,sans-serif}
+.filter-btn.active{color:#fff;border-color:transparent}
+.filter-btn.f-all.active{background:var(--ink)}
+.filter-btn.f-attract.active{background:#378ADD}
+.filter-btn.f-engage.active{background:#3B6D11}
+.filter-btn.f-convert.active{background:#993C1D}
+.filter-btn.f-authority.active{background:#BA7517}
+.tb-count{margin-left:auto;font-size:11px;color:var(--ink3)}
+.kw-table{width:100%;border-collapse:collapse;font-size:12px}
+.kw-table thead tr{background:var(--sand2)}
+.kw-table thead th{padding:8px 12px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2);white-space:nowrap;cursor:pointer;user-select:none}
+.kw-table thead th:hover{background:var(--sand)}
+.kw-table tbody tr{border-bottom:1px solid var(--sand3)}
+.kw-table tbody tr:last-child{border-bottom:none}
+.kw-table tbody tr:hover{background:var(--bg2)}
+.kw-table tbody tr.hidden{display:none}
+.kw-table td{padding:9px 12px;vertical-align:middle}
+.kw-kw{font-weight:600;color:var(--ink);font-size:12px}
+.stage-pill{display:inline-flex;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.sp-attract{background:var(--attract-bg);color:var(--attract-t)}
+.sp-engage{background:var(--engage-bg);color:var(--engage-t)}
+.sp-convert{background:var(--convert-bg);color:var(--convert-t)}
+.sp-authority{background:var(--authority-bg);color:var(--authority-t)}
+.diff-wrap{display:flex;align-items:center;gap:5px}
+.diff-bar{width:40px;height:4px;border-radius:3px;background:var(--sand3);overflow:hidden}
+.diff-fill{height:100%;border-radius:3px}
+.diff-low .diff-fill{background:#3B6D11}
+.diff-med .diff-fill{background:#BA7517}
+.diff-high .diff-fill{background:#A32D2D}
+.pri{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px}
+.pri-p1{background:#F7C1C1;color:#501313}
+.pri-p2{background:var(--gold2);color:#412402}
+.pri-p3{background:var(--sand3);color:var(--ink2)}
+.bv{display:flex;gap:3px;align-items:center}
+.bv-dot{width:7px;height:7px;border-radius:50%}
+.bv-on{background:var(--terra)}
+.bv-off{background:var(--sand3)}
+.th-info{width:13px;height:13px;border-radius:50%;background:var(--sand);color:var(--ink2);font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;cursor:help;position:relative;flex-shrink:0;margin-left:3px;vertical-align:middle}
+.th-info:hover .tip{display:block}
+.tip{display:none;position:absolute;top:18px;left:0;background:var(--ink);color:#fff;font-size:11px;font-weight:400;padding:8px 10px;border-radius:7px;width:210px;line-height:1.6;z-index:200;letter-spacing:0;text-transform:none;cursor:default;white-space:normal;font-family:Arial,sans-serif}
+.sort-ic{margin-left:2px;opacity:.4;font-size:9px}
+.sorted .sort-ic{opacity:1}
+.add-row-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;font-size:12px;color:var(--slate);font-weight:600;cursor:pointer;border-top:1px solid var(--sand2);background:var(--bg2);transition:background .15s;border:none;width:100%;text-align:left;font-family:Arial,sans-serif}
+.add-row-btn:hover{background:var(--sand3)}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;padding:8px 14px;background:var(--bg2);border-top:1px solid var(--sand2);font-size:11px;color:var(--ink3)}
+.leg{display:flex;align-items:center;gap:4px}
+
+/* INFO CARD */
+.info-card{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);padding:16px 20px;margin-bottom:12px}
+.info-card h3{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.info-card p{font-size:12px;color:var(--ink2);line-height:1.7}
+
+/* COMING SOON */
+.coming{background:#fff;border:1.5px dashed var(--sand2);border-radius:var(--r);padding:36px;text-align:center;color:var(--ink3)}
+.coming-icon{font-size:26px;margin-bottom:10px}
+.coming-title{font-size:14px;font-weight:700;color:var(--ink2);margin-bottom:5px}
+.coming-sub{font-size:12px;line-height:1.65}
+
+/* LINK BUILDING TABLE */
+.lb-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--sand2)}
+.lb-table thead tr{background:var(--sand2)}
+.lb-table thead th{padding:8px 12px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.lb-table tbody tr{border-bottom:1px solid var(--sand3)}
+.lb-table tbody tr:last-child{border-bottom:none}
+.lb-table tbody tr:hover{background:var(--bg2)}
+.lb-table td{padding:8px 12px;vertical-align:middle;font-size:12px;color:var(--ink2)}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--sand2);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--ink3)}
+
+@media(max-width:760px){
+  .topbar,.hero,.page,.footer{padding-left:20px;padding-right:20px}
+  .tab-nav{padding:0 20px}
+  .funnel-stages,.channel-grid,.io-split{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-left">
+    <svg width="30" height="24" viewBox="0 0 60 48" fill="none" style="flex-shrink:0">
+      <rect x="0"  y="26" width="5" height="20" rx="1" fill="#2a9aaa"/>
+      <rect x="8"  y="16" width="5" height="30" rx="1" fill="#2a9aaa"/>
+      <rect x="16" y="4"  width="5" height="42" rx="1" fill="#1e7d8c"/>
+      <polygon points="24,4 24,46 30,46 30,26 37,46 44,26 44,46 50,46 50,4 44,4 37,20 30,4" fill="#fff"/>
+    </svg>
+    <a class="tb-back" href="track-dm.html">← Track DM</a>
+    <div class="tb-sep"></div>
+    <span class="tb-name">Execution</span>
+    <div class="tb-sep"></div>
+    <span class="tb-sub">OWN Core</span>
+  </div>
+  <span style="font-size:11px;color:rgba(255,255,255,.25)">Private · 2026</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">OWN — CORE · Execution</div>
+  <h1>🚀 <em>Execution</em> Domain</h1>
+  <p class="hero-sub">Primary ownership across all digital channels. Navigate each channel using the tabs below — each tab shows its Inbound / Outbound type and specific frameworks.</p>
+  <div class="breadcrumb">
+    <span class="bc-item">Track B · Digital Marketing Manager</span>
+    <span class="bc-sep">›</span>
+    <span class="bc-item">Execution</span>
+    <span class="bc-sep">›</span>
+    <span class="bc-current" id="bc-current">Overview</span>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <div class="tab-group">
+    <button class="tab-btn active" onclick="switchTab('overview',this)" data-bc="Overview">Overview</button>
+  </div>
+  <div class="tab-group">
+    <span class="tab-group-label">Digital · Core</span>
+    <button class="tab-btn" onclick="switchTab('seo',this)" data-bc="SEO">
+      SEO <span class="io-badge io-in">Inbound</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('ads',this)" data-bc="Paid Ads">
+      Paid Ads <span class="io-badge io-out">Outbound</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('website',this)" data-bc="Website &amp; CRO">
+      Website / CRO <span class="io-badge io-both">Both</span>
+    </button>
+  </div>
+  <div class="tab-group">
+    <span class="tab-group-label">Content · Co-work</span>
+    <button class="tab-btn" onclick="switchTab('content',this)" data-bc="Content">
+      Content <span class="io-badge io-in">Inbound</span>
+    </button>
+  </div>
+  <div class="tab-group">
+    <span class="tab-group-label">Support</span>
+    <button class="tab-btn" onclick="switchTab('social',this)" data-bc="Social / Event">
+      Social / Event <span class="io-badge io-out">Outbound</span>
+    </button>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ══════════════════════════════════
+     FUNNEL STAGE BANNER — fixed on all tabs (collapsible)
+══════════════════════════════════ -->
+<div class="funnel-banner">
+  <div class="funnel-banner-hdr" onclick="toggleFunnel()">
+    <span class="funnel-banner-hdr-left">Funnel Stage Reference · B2B</span>
+    <span class="funnel-banner-hdr-right" id="funnel-tog">▾ Show</span>
+  </div>
+  <div id="funnel-body" style="display:none">
+    <div class="funnel-stages">
+      <div class="fstage fstage-attract">
+        <div class="fstage-name">Attract</div>
+        <div class="fstage-equiv">≡ TOFU · Awareness</div>
+        <div class="fstage-items">Blog posts<br>SEO articles<br>Social reach<br>Brand search</div>
+      </div>
+      <div class="fstage fstage-engage">
+        <div class="fstage-name">Engage</div>
+        <div class="fstage-equiv">≡ MOFU · Consideration</div>
+        <div class="fstage-items">Guides &amp; ebooks<br>Comparison pages<br>Industry pages<br>Retargeting</div>
+      </div>
+      <div class="fstage fstage-convert">
+        <div class="fstage-name">Convert</div>
+        <div class="fstage-equiv">≡ BOFU · Decision</div>
+        <div class="fstage-items">Landing pages<br>Service pages<br>Contact / Demo<br>Paid search</div>
+      </div>
+      <div class="fstage fstage-authority">
+        <div class="fstage-name">Authority</div>
+        <div class="fstage-equiv">≡ Trust · Post-funnel</div>
+        <div class="fstage-items">Case studies<br>Testimonials<br>DR / PR / Awards<br>Thought leadership</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     TAB: OVERVIEW
+══════════════════════════════════ -->
+<div class="tab-panel active" id="panel-overview">
+
+  <div class="sec-label" style="margin-top:0">Channel Map · Inbound vs Outbound</div>
+
+  <div class="io-split" style="margin-bottom:16px">
+    <div class="io-box io-box-in">
+      <div class="io-box-title">Inbound — Pull</div>
+      <div class="io-box-items">
+        <span>🔍 <b>SEO</b> — organic search, people find you</span>
+        <span>✍️ <b>Content</b> — blog, case study, industry pages</span>
+        <span>🌐 <b>Website</b> — destination for all inbound traffic</span>
+      </div>
+    </div>
+    <div class="io-box io-box-out">
+      <div class="io-box-title">Outbound — Push</div>
+      <div class="io-box-items">
+        <span>📣 <b>Paid Ads</b> — Google Search, LinkedIn Ads</span>
+        <span>📱 <b>Social</b> — content distribution, brand signal</span>
+        <span>🎤 <b>Event / Webinar</b> — direct lead gen outreach</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Channel Detail</div>
+  <div class="channel-grid">
+
+    <div class="ch-card">
+      <div class="ch-card-top">
+        <div class="ch-card-row">
+          <div class="ch-card-title">SEO</div>
+          <div style="display:flex;gap:5px">
+            <span class="io-badge io-in">Inbound</span>
+            <span class="rbadge b-core">OWN Core</span>
+          </div>
+        </div>
+      </div>
+      <div class="ch-card-body">
+        <div class="ch-card-desc">Drive organic traffic through keyword strategy, on-page optimization, and link building.</div>
+        <div class="ch-card-subs">
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--terra)"></span>Keyword &amp; Content Map</div>
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--terra)"></span>On-page optimization</div>
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--terra)"></span>Link Building</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ch-card">
+      <div class="ch-card-top">
+        <div class="ch-card-row">
+          <div class="ch-card-title">Paid Ads</div>
+          <div style="display:flex;gap:5px">
+            <span class="io-badge io-out">Outbound</span>
+            <span class="rbadge b-core">OWN Core</span>
+          </div>
+        </div>
+      </div>
+      <div class="ch-card-body">
+        <div class="ch-card-desc">Generate leads at controlled CPL via Google Search (high intent) and LinkedIn (ICP targeting).</div>
+        <div class="ch-card-subs">
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--slate)"></span>Google Ads</div>
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--slate)"></span>LinkedIn Ads</div>
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--slate)"></span>CPL tracking &amp; budget</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ch-card">
+      <div class="ch-card-top">
+        <div class="ch-card-row">
+          <div class="ch-card-title">Website / CRO</div>
+          <div style="display:flex;gap:5px">
+            <span class="io-badge io-both">Both</span>
+            <span class="rbadge b-core">OWN Core</span>
+          </div>
+        </div>
+      </div>
+      <div class="ch-card-body">
+        <div class="ch-card-desc">Destination for all channels. Optimize for conversion — landing pages, forms, CTAs, page speed.</div>
+        <div class="ch-card-subs">
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--gold)"></span>Landing page optimization</div>
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--gold)"></span>Lead Funnel / CVR tracking</div>
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--gold)"></span>A/B testing</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ch-card">
+      <div class="ch-card-top">
+        <div class="ch-card-row">
+          <div class="ch-card-title">Content</div>
+          <div style="display:flex;gap:5px">
+            <span class="io-badge io-in">Inbound</span>
+            <span class="rbadge b-cowork">Co-work</span>
+          </div>
+        </div>
+      </div>
+      <div class="ch-card-body">
+        <div class="ch-card-desc">You define strategy and briefs. Content team executes. Aligned to Keyword &amp; Content Map.</div>
+        <div class="ch-card-subs">
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--sage)"></span>SEO blog &amp; industry pages</div>
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--sage)"></span>Case studies</div>
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--sage)"></span>Editorial calendar</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ch-card">
+      <div class="ch-card-top">
+        <div class="ch-card-row">
+          <div class="ch-card-title">Social / Event</div>
+          <div style="display:flex;gap:5px">
+            <span class="io-badge io-out">Outbound</span>
+            <span class="rbadge b-support">Support</span>
+          </div>
+        </div>
+      </div>
+      <div class="ch-card-body">
+        <div class="ch-card-desc">Supporting role. Social for content distribution &amp; brand signal. Events/webinars for lead gen when aligned to Convert stage.</div>
+        <div class="ch-card-subs">
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--sand)"></span>Content distribution</div>
+          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--sand)"></span>Webinar (lead gen)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     TAB: SEO
+══════════════════════════════════ -->
+<div class="tab-panel" id="panel-seo">
+
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+    <span class="io-badge io-in" style="font-size:11px;padding:3px 10px">Inbound</span>
+    <span style="font-size:12px;color:var(--ink3)">People search → find you organically. You do not pay per click.</span>
+  </div>
+
+  <!-- KEYWORD & CONTENT MAP -->
+  <div class="sec-label" style="margin-top:0">
+    Keyword &amp; Content Map
+    <span style="font-weight:400;font-size:11px;color:var(--ink3)">Add your real keywords below</span>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-toolbar">
+      <span style="font-size:11px;font-weight:700;color:var(--ink2);margin-right:2px">Filter by stage:</span>
+      <button class="filter-btn f-all active" onclick="filterTable('all',this)">All</button>
+      <button class="filter-btn f-attract" onclick="filterTable('attract',this)">Attract</button>
+      <button class="filter-btn f-engage" onclick="filterTable('engage',this)">Engage</button>
+      <button class="filter-btn f-convert" onclick="filterTable('convert',this)">Convert</button>
+      <button class="filter-btn f-authority" onclick="filterTable('authority',this)">Authority</button>
+      <span class="tb-count" id="row-count"></span>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="kw-table">
+      <thead>
+        <tr>
+          <th>Keyword <span class="th-info">?<span class="tip">The search term you want to rank for.</span></span></th>
+          <th>Funnel Stage <span class="th-info">?<span class="tip"><b>Attract</b> = TOFU, awareness<br><b>Engage</b> = MOFU, consideration<br><b>Convert</b> = BOFU, high intent<br><b>Authority</b> = trust, social proof</span></span></th>
+          <th onclick="sortTable(2)">Volume <span class="th-info">?<span class="tip">Monthly search volume. Higher = more traffic potential.</span></span> <span class="sort-ic">↕</span></th>
+          <th onclick="sortTable(3)">Difficulty <span class="th-info">?<span class="tip">KD 0–100 (Ahrefs).<br>0–30 Low · 31–60 Med · 61+ High</span></span> <span class="sort-ic">↕</span></th>
+          <th>Business Value <span class="th-info">?<span class="tip">Likelihood to generate qualified B2B leads.<br>●●● High · ●●○ Medium · ●○○ Low</span></span></th>
+          <th>Content Type <span class="th-info">?<span class="tip">Best format: Landing Page, Blog, Case Study, Service Page, Comparison, Guide...</span></span></th>
+          <th>Target Page <span class="th-info">?<span class="tip">The URL that should rank. One keyword → one page.</span></span></th>
+          <th>CTA <span class="th-info">?<span class="tip">Match the stage. Don't push Contact Us on Attract content.</span></span></th>
+          <th onclick="sortTable(8)">Priority <span class="th-info">?<span class="tip">P1 = high BV + winnable KD<br>P2 = next quarter<br>P3 = backlog</span></span> <span class="sort-ic">↕</span></th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="kw-tbody"></tbody>
+    </table>
+    </div>
+    <button class="add-row-btn" onclick="addRow()">+ Add keyword</button>
+    <div class="legend-row">
+      <span style="font-weight:700;color:var(--ink2)">Difficulty:</span>
+      <span class="leg"><span style="width:9px;height:9px;border-radius:2px;background:#3B6D11;display:inline-block"></span>0–30 Low</span>
+      <span class="leg"><span style="width:9px;height:9px;border-radius:2px;background:#BA7517;display:inline-block"></span>31–60 Med</span>
+      <span class="leg"><span style="width:9px;height:9px;border-radius:2px;background:#A32D2D;display:inline-block"></span>61+ High</span>
+      <span style="margin-left:8px;font-weight:700;color:var(--ink2)">Business Value:</span>
+      <span>●●● High &nbsp;●●○ Medium &nbsp;●○○ Low</span>
+    </div>
+  </div>
+
+  <!-- LINK BUILDING -->
+  <div class="sec-label" style="margin-top:28px">Link Building</div>
+  <div class="info-card">
+    <h3>What is Link Building?</h3>
+    <p>Getting other websites to link to your pages. Each backlink = a "vote of trust" that increases Domain Rating (DR) and helps pages rank higher. For B2B IT outsourcing, focus on industry directories, guest posts, and PR mentions.</p>
+  </div>
+  <table class="lb-table">
+    <thead>
+      <tr>
+        <th>Tactic</th>
+        <th>Type</th>
+        <th>Effort</th>
+        <th>Impact</th>
+        <th>Notes</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:600;color:var(--ink)">Guest posting</td>
+        <td><span class="io-badge io-out">Outbound</span></td>
+        <td>High</td>
+        <td><span style="color:#3B6D11;font-weight:700">High</span></td>
+        <td style="color:var(--ink3)">Write for tech/IT blogs in target market</td>
+        <td><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;color:var(--ink)">Directory listings</td>
+        <td><span class="io-badge io-in">Inbound</span></td>
+        <td>Low</td>
+        <td><span style="color:#BA7517;font-weight:700">Medium</span></td>
+        <td style="color:var(--ink3)">Clutch, GoodFirms, Upwork profile</td>
+        <td><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;color:var(--ink)">PR / media mentions</td>
+        <td><span class="io-badge io-out">Outbound</span></td>
+        <td>High</td>
+        <td><span style="color:#3B6D11;font-weight:700">High</span></td>
+        <td style="color:var(--ink3)">Press releases, award submissions</td>
+        <td><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;color:var(--ink)">Broken link building</td>
+        <td><span class="io-badge io-out">Outbound</span></td>
+        <td>Medium</td>
+        <td><span style="color:#BA7517;font-weight:700">Medium</span></td>
+        <td style="color:var(--ink3)">Find broken links on target sites, offer replacement</td>
+        <td><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;color:var(--ink)">Case study co-publish</td>
+        <td><span class="io-badge io-in">Inbound</span></td>
+        <td>Medium</td>
+        <td><span style="color:#3B6D11;font-weight:700">High</span></td>
+        <td style="color:var(--ink3)">Client agrees to publish case study on their site</td>
+        <td><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════
+     TAB: PAID ADS
+══════════════════════════════════ -->
+<div class="tab-panel" id="panel-ads">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+    <span class="io-badge io-out" style="font-size:11px;padding:3px 10px">Outbound</span>
+    <span style="font-size:12px;color:var(--ink3)">You push to audience. Pay per click or impression. Fast results, stops when budget stops.</span>
+  </div>
+  <div class="info-card">
+    <h3>Google Ads — Search (High Intent)</h3>
+    <p>Target people actively searching for IT outsourcing services. Best for Convert stage keywords. Set up exact match + phrase match campaigns, negative keyword list, and track CPL by campaign.</p>
+  </div>
+  <div class="info-card">
+    <h3>LinkedIn Ads — ICP Targeting</h3>
+    <p>Target by job title (CTO, VP Engineering, IT Director), industry, and company size. Best for Engage and Convert stages. More expensive CPL but higher lead quality for B2B.</p>
+  </div>
+  <div class="coming" style="margin-top:8px">
+    <div class="coming-icon">📊</div>
+    <div class="coming-title">Campaign framework — coming soon</div>
+    <div class="coming-sub">Add campaign structure, budget allocation, CPL targets, and optimization checklist here.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     TAB: WEBSITE / CRO
+══════════════════════════════════ -->
+<div class="tab-panel" id="panel-website">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+    <span class="io-badge io-both" style="font-size:11px;padding:3px 10px">Both</span>
+    <span style="font-size:12px;color:var(--ink3)">Serves all channels — inbound traffic from SEO/Content AND outbound traffic from Ads.</span>
+  </div>
+  <div class="info-card">
+    <h3>Lead Funnel / CVR Tracking</h3>
+    <p>Track conversion rate (CVR) by page. Identify where visitors drop off in the funnel. Key metric: sessions → form view → form submit → qualified lead. Target CVR ≥ 1% on service/landing pages.</p>
+  </div>
+  <div class="info-card">
+    <h3>CRO — Conversion Rate Optimization</h3>
+    <p>Systematic improvement of pages to increase CVR without increasing traffic. Tactics: clear CTA placement, form shortening, page speed, trust signals (client logos, case study links), A/B testing headlines.</p>
+  </div>
+  <div class="coming" style="margin-top:8px">
+    <div class="coming-icon">🔧</div>
+    <div class="coming-title">CRO checklist &amp; A/B test log — coming soon</div>
+    <div class="coming-sub">Add landing page audit checklist, form optimization log, and A/B test results here.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     TAB: CONTENT
+══════════════════════════════════ -->
+<div class="tab-panel" id="panel-content">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+    <span class="io-badge io-in" style="font-size:11px;padding:3px 10px">Inbound</span>
+    <span style="font-size:12px;color:var(--ink3)">Pull strategy — educate and attract the right audience with valuable content.</span>
+  </div>
+  <div class="info-card">
+    <h3>Your role (Co-work)</h3>
+    <p>You own the content strategy and briefs — the Content team executes writing and design. Key output: SEO content briefs aligned to Keyword &amp; Content Map, case study framework, and editorial calendar.</p>
+  </div>
+  <div class="coming" style="margin-top:8px">
+    <div class="coming-icon">✍️</div>
+    <div class="coming-title">Content framework — coming soon</div>
+    <div class="coming-sub">Add editorial calendar, content brief template, and case study framework here.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     TAB: SOCIAL / EVENT
+══════════════════════════════════ -->
+<div class="tab-panel" id="panel-social">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+    <span class="io-badge io-out" style="font-size:11px;padding:3px 10px">Outbound</span>
+    <span style="font-size:12px;color:var(--ink3)">Push strategy — you initiate contact or distribute content to reach the audience.</span>
+  </div>
+  <div class="info-card">
+    <h3>Your role (Support)</h3>
+    <p>Not a primary lead gen driver for B2B IT outsourcing. Social is used for content distribution and brand signal. Webinars support lead gen when aligned with Convert or Authority stage content.</p>
+  </div>
+  <div class="coming" style="margin-top:8px">
+    <div class="coming-icon">📱</div>
+    <div class="coming-title">Distribution checklist — coming soon</div>
+    <div class="coming-sub">Add social distribution checklist and webinar playbook here.</div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<div class="footer">
+  <span>← <a href="track-dm.html" style="color:var(--ink3);text-decoration:none">Back to Track DM</a></span>
+  <span>Career Hub · Private · 2026</span>
+</div>
+
+<script>
+/* TAB */
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('bc-current').textContent=btn.getAttribute('data-bc');
+}
+
+/* FUNNEL TOGGLE */
+var funnelOpen=false;
+function toggleFunnel(){
+  funnelOpen=!funnelOpen;
+  document.getElementById('funnel-body').style.display=funnelOpen?'block':'none';
+  document.getElementById('funnel-tog').textContent=funnelOpen?'▴ Hide':'▾ Show';
+}
+
+/* KEYWORD TABLE */
+var DATA=[
+  {kw:'Keyword 1',stage:'attract',vol:0,diff:0,bv:1,ct:'Blog Article',page:'/blog/keyword-1',cta:'Read More',pri:'P3',done:false}
+];
+var currentFilter='all',sortCol=-1,sortAsc=true;
+
+function stageClass(s){return{attract:'sp-attract',engage:'sp-engage',convert:'sp-convert',authority:'sp-authority'}[s]||'';}
+function stageLabel(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+function diffClass(d){return d<=30?'diff-low':d<=60?'diff-med':'diff-high';}
+function priClass(p){return{P1:'pri-p1',P2:'pri-p2',P3:'pri-p3'}[p]||'pri-p3';}
+function bvHtml(v){var h='<div class="bv">';for(var i=1;i<=3;i++)h+='<div class="bv-dot '+(i<=v?'bv-on':'bv-off')+'"></div>';return h+'</div>';}
+function diffBarHtml(d){var dc=diffClass(d);return'<div class="diff-wrap"><div class="diff-bar '+dc+'"><div class="diff-fill" style="width:'+d+'%"></div></div><span style="font-size:11px;color:var(--ink3)">'+d+'</span></div>';}
+
+function renderRows(){
+  var tbody=document.getElementById('kw-tbody');
+  tbody.innerHTML='';
+  var visible=0;
+  DATA.forEach(function(r,i){
+    var show=currentFilter==='all'||r.stage===currentFilter;
+    var tr=document.createElement('tr');
+    if(!show)tr.className='hidden';else visible++;
+    tr.innerHTML=
+      '<td><span class="kw-kw">'+r.kw+'</span></td>'+
+      '<td><span class="stage-pill '+stageClass(r.stage)+'">'+stageLabel(r.stage)+'</span></td>'+
+      '<td style="font-weight:600;color:var(--ink)">'+r.vol.toLocaleString()+'</td>'+
+      '<td>'+diffBarHtml(r.diff)+'</td>'+
+      '<td>'+bvHtml(r.bv)+'</td>'+
+      '<td style="color:var(--ink2)">'+r.ct+'</td>'+
+      '<td style="font-size:11px;color:var(--slate)">'+r.page+'</td>'+
+      '<td style="font-size:11px;color:var(--ink2)">'+r.cta+'</td>'+
+      '<td><span class="pri '+priClass(r.pri)+'">'+r.pri+'</span></td>'+
+      '<td><label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px;color:var(--ink3)"><input type="checkbox" '+(r.done?'checked':'')+' onchange="toggleDone('+i+',this)" style="accent-color:var(--slate);width:13px;height:13px"> '+(r.done?'<s>Done</s>':'Pending')+'</label></td>';
+    tbody.appendChild(tr);
+  });
+  document.getElementById('row-count').textContent=visible+' of '+DATA.length+' rows';
+}
+
+function toggleDone(i,cb){DATA[i].done=cb.checked;renderRows();}
+function filterTable(stage,btn){
+  currentFilter=stage;
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  renderRows();
+}
+function sortTable(col){
+  if(sortCol===col)sortAsc=!sortAsc;else{sortCol=col;sortAsc=true;}
+  DATA.sort(function(a,b){
+    var pairs=[[a.kw,b.kw],[a.stage,b.stage],[a.vol,b.vol],[a.diff,b.diff],[a.bv,b.bv],[a.ct,b.ct],[a.page,b.page],[a.cta,b.cta],[a.pri,b.pri]];
+    var va=pairs[col][0],vb=pairs[col][1];
+    return va<vb?(sortAsc?-1:1):va>vb?(sortAsc?1:-1):0;
+  });
+  renderRows();
+}
+function addRow(){
+  var n=DATA.length+1;
+  DATA.push({kw:'Keyword '+n,stage:'attract',vol:0,diff:0,bv:1,ct:'Blog Article',page:'/blog/keyword-'+n,cta:'Read More',pri:'P3',done:false});
+  renderRows();
+}
+renderRows();
+</script>
+</body>
+</html>

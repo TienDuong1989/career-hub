@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Marketing Manager — Career Hub</title>
+<style>
+:root{
+  --sand:#DCC7AA;--mauve:#C396A6;--gold:#D4A017;--slate:#8299CA;
+  --sage:#ADC2A3;--terra:#C68463;--sand2:#E9DCCA;--mauve2:#D5B5C1;
+  --gold2:#E1BD5D;--slate2:#A8B8DA;--sage2:#C5D4BF;--terra2:#D7A992;
+  --sand3:#EDE3D5;--mauve3:#E1CBD3;--slate3:#C1CCE4;
+  --bg:#FBF9F6;--bg2:#F6F1EA;
+  --ink:#2C2318;--ink2:#5C4D3C;--ink3:#8C7B6A;--r:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+/* TOPBAR */
+.topbar{height:52px;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:10}
+.tb-left{display:flex;align-items:center;gap:12px}
+.tb-back{font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s}
+.tb-back:hover{color:#fff}
+.tb-name{font-size:13px;font-weight:700;color:#fff}
+.tb-sep{width:1px;height:16px;background:rgba(255,255,255,.15)}
+.tb-sub{font-size:11px;color:rgba(255,255,255,.35)}
+
+/* HERO */
+.hero{background:var(--ink);padding:44px 40px 40px}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(130,153,202,.15);border:1px solid rgba(130,153,202,.3);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--slate2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+.hero h1{font-size:28px;font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px}
+.hero h1 em{font-style:normal;color:var(--slate2)}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;max-width:520px;margin-bottom:24px}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap}
+.hstat-val{font-size:18px;font-weight:700;color:#fff}
+.hstat-label{font-size:10px;color:rgba(255,255,255,.35);margin-top:1px}
+
+/* PAGE */
+.page{padding:32px 40px 72px;max-width:1100px}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;margin-top:40px;display:flex;align-items:center;gap:10px}
+.sec-label:first-child{margin-top:0}
+
+/* TABLE MAP */
+.table-card{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden}
+.tmap{width:100%;border-collapse:collapse;font-size:13px}
+.tmap thead tr{background:var(--sand2)}
+.tmap thead th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2)}
+.tmap tbody tr{border-bottom:1px solid var(--sand3)}
+.tmap tbody tr:last-child{border-bottom:none}
+.tmap tbody tr:hover{background:var(--bg2)}
+.tmap td{padding:9px 14px;vertical-align:middle}
+.layer-cell{font-weight:700;font-size:12px;white-space:nowrap}
+.area-cell{color:var(--ink2)}
+.scope-cell{font-size:11px;color:var(--ink3)}
+.rbadge{display:inline-flex;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.03em;white-space:nowrap}
+.b-core{background:var(--terra2);color:#5a2a10}
+.b-own{background:var(--sage2);color:#2a4a22}
+.b-coown{background:var(--slate3);color:#1e3060}
+.b-align{background:var(--gold2);color:#4a3000}
+.b-contrib{background:var(--mauve3);color:#5a1e36}
+.b-support{background:var(--sand3);color:var(--ink2)}
+.b-cowork{background:var(--sage2);color:#2a4a22}
+.layer-biz td:first-child{border-left:3px solid var(--terra)}
+.layer-sys td:first-child{border-left:3px solid var(--slate)}
+.layer-exe td:first-child{border-left:3px solid var(--gold)}
+.layer-sup td:first-child{border-left:3px solid var(--sage)}
+.layer-ppl td:first-child{border-left:3px solid var(--mauve)}
+.layer-enb td:first-child{border-left:3px solid var(--sand)}
+
+/* LEGEND */
+.legend{display:flex;gap:16px;flex-wrap:wrap;padding:11px 16px;background:var(--bg2);border:1px solid var(--sand2);border-radius:10px;margin-bottom:16px}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink3)}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* DOMAIN BOXES */
+.domain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dbox{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .16s,box-shadow .16s,border-color .16s;text-decoration:none;display:flex;flex-direction:column}
+.dbox:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(44,35,24,.10);border-color:var(--sand)}
+.dbox-accent{height:5px;flex-shrink:0}
+.dbox-inner{padding:20px 22px 16px;flex:1}
+.dbox-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.dbox-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.dbox-title{font-size:17px;font-weight:700;color:var(--ink);letter-spacing:-.02em;margin-bottom:6px}
+.dbox-sub{font-size:12px;color:var(--ink3);line-height:1.6;margin-bottom:14px}
+.dbox-areas{display:flex;flex-direction:column;gap:6px}
+.dbox-area{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:var(--bg2);border-radius:7px}
+.dbox-area-name{font-size:12px;color:var(--ink2);font-weight:600}
+.dbox-footer{border-top:1px solid var(--sand3);padding:10px 22px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.dbox-status{font-size:10px;color:var(--ink3)}
+.dbox-arrow{font-size:14px;color:var(--ink3)}
+
+/* ROADMAP / CHECKLIST */
+.prog-wrap{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.prog-bar-bg{flex:1;height:5px;background:var(--sand3);border-radius:4px;overflow:hidden}
+.prog-bar{height:5px;background:var(--slate);border-radius:4px;transition:width .4s}
+.roadmap-card{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden;margin-bottom:10px}
+.phase-hdr{padding:12px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;transition:background .15s}
+.phase-hdr:hover{background:var(--bg2)}
+.phase-hdr-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phase-pill{font-size:10px;font-weight:700;padding:2px 10px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.pill-p1{background:var(--sage2);color:#2a4a22}
+.pill-p2{background:var(--slate3);color:#1e3060}
+.phase-title{font-size:13px;font-weight:700;color:var(--ink)}
+.phase-period{font-size:11px;color:var(--ink3)}
+.phase-toggle{font-size:13px;color:var(--ink3);transition:transform .2s;flex-shrink:0}
+.phase-toggle.open{transform:rotate(180deg)}
+.phase-body{border-top:1px solid var(--sand3)}
+.stage-hdr{padding:9px 20px;background:var(--bg2);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--sand3)}
+.stage-name{font-size:11px;font-weight:700;color:var(--ink2)}
+.stage-period{font-size:11px;color:var(--ink3)}
+.stage-folder{font-size:10px;color:var(--slate);font-weight:600;letter-spacing:.03em}
+
+/* CHECK ITEM — task + file link */
+.checklist{padding:4px 20px 10px}
+.check-item{display:flex;align-items:flex-start;gap:0;padding:6px 0;border-bottom:0.5px solid var(--sand3)}
+.check-item:last-child{border-bottom:none}
+.check-cb{width:15px;height:15px;margin-top:2px;accent-color:var(--slate);cursor:pointer;flex-shrink:0}
+.check-main{flex:1;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding-left:10px}
+.check-label{font-size:12px;color:var(--ink2);line-height:1.5;cursor:pointer}
+.check-item.done .check-label{text-decoration:line-through;color:var(--ink3)}
+.file-link{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;color:var(--slate);text-decoration:none;padding:2px 8px;border-radius:6px;background:var(--slate3);white-space:nowrap;flex-shrink:0;opacity:.8;transition:opacity .15s}
+.file-link:hover{opacity:1}
+.file-link svg{width:11px;height:11px;flex-shrink:0}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--sand2);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--ink3)}
+
+@media(max-width:760px){.topbar,.hero,.page,.footer{padding-left:20px;padding-right:20px}.domain-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.domain-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-left">
+    <svg width="30" height="24" viewBox="0 0 60 48" fill="none" style="flex-shrink:0">
+      <rect x="0"  y="26" width="5" height="20" rx="1" fill="#2a9aaa"/>
+      <rect x="8"  y="16" width="5" height="30" rx="1" fill="#2a9aaa"/>
+      <rect x="16" y="4"  width="5" height="42" rx="1" fill="#1e7d8c"/>
+      <polygon points="24,4 24,46 30,46 30,26 37,46 44,26 44,46 50,46 50,4 44,4 37,20 30,4" fill="#fff"/>
+    </svg>
+    <a class="tb-back" href="index.html">← Home</a>
+    <div class="tb-sep"></div>
+    <span class="tb-name">Digital Marketing Manager</span>
+    <div class="tb-sep"></div>
+    <span class="tb-sub">Track B</span>
+  </div>
+  <span style="font-size:11px;color:rgba(255,255,255,.25)">Private · 2026</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Track B · Digital</div>
+  <h1>Digital Marketing <em>Manager</em></h1>
+  <p class="hero-sub">Full capability map across 6 layers + 8-stage 24M roadmap with task notes and file references for each checklist item.</p>
+  <div class="hero-stats">
+    <div><div class="hstat-val">6</div><div class="hstat-label">Capability layers</div></div>
+    <div><div class="hstat-val">8</div><div class="hstat-label">Stages</div></div>
+    <div><div class="hstat-val">24M</div><div class="hstat-label">Roadmap</div></div>
+    <div><div class="hstat-val" id="hero-pct">—</div><div class="hstat-label">Progress</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ═══ SECTION 1: CAPABILITY MAP ═══ -->
+  <div class="sec-label" style="margin-top:0">Capability Map · Overview</div>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:var(--terra)"></div>OWN (Core)</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--sage)"></div>Own</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--slate)"></div>Co-own</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--gold)"></div>Align</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--mauve)"></div>Contribute</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--sand)"></div>Support / Co-work</div>
+  </div>
+
+  <div class="table-card">
+    <table class="tmap">
+      <thead>
+        <tr>
+          <th style="width:130px">Layer</th>
+          <th style="width:175px">Area</th>
+          <th>Scope</th>
+          <th style="width:165px">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="layer-biz"><td class="layer-cell" style="color:#7a4422">🏢 BUSINESS</td><td class="area-cell">Strategy &amp; Planning</td><td class="scope-cell">Funnel, KPI (Digital)</td><td><span class="rbadge b-contrib">Contribute</span></td></tr>
+        <tr class="layer-biz"><td></td><td class="area-cell">Management Layer</td><td class="scope-cell">Report, Proposal (Digital)</td><td><span class="rbadge b-own">Own (Digital scope)</span></td></tr>
+        <tr class="layer-biz"><td></td><td class="area-cell">Sales &amp; CRM</td><td class="scope-cell">Lead quality, MQL</td><td><span class="rbadge b-align">Align</span></td></tr>
+        <tr class="layer-sys"><td class="layer-cell" style="color:#1e3060">⚙️ SYSTEM</td><td class="area-cell">Data &amp; Analytics</td><td class="scope-cell">Tracking, CVR, funnel</td><td><span class="rbadge b-own">Own</span></td></tr>
+        <tr class="layer-sys"><td></td><td class="area-cell">CRM &amp; Automation</td><td class="scope-cell">Lead tracking</td><td><span class="rbadge b-coown">Co-own</span></td></tr>
+        <tr class="layer-exe" style="background:#fffbf5"><td class="layer-cell" style="color:#5a3800">🚀 EXECUTION</td><td class="area-cell" style="font-weight:700">Digital</td><td class="scope-cell" style="font-weight:600">SEO, Ads, Website, CRO</td><td><span class="rbadge b-core">OWN (CORE)</span></td></tr>
+        <tr class="layer-exe"><td></td><td class="area-cell">Content</td><td class="scope-cell">SEO content, case study</td><td><span class="rbadge b-cowork">Co-work</span></td></tr>
+        <tr class="layer-exe"><td></td><td class="area-cell">Social</td><td class="scope-cell">Distribution</td><td><span class="rbadge b-support">Support</span></td></tr>
+        <tr class="layer-exe"><td></td><td class="area-cell">Event</td><td class="scope-cell">Webinar (lead gen)</td><td><span class="rbadge b-support">Support</span></td></tr>
+        <tr class="layer-sup"><td class="layer-cell" style="color:#2a4a22">🎨 SUPPORT</td><td class="area-cell">Design</td><td class="scope-cell">UX/UI, landing page</td><td><span class="rbadge b-cowork">Co-work</span></td></tr>
+        <tr class="layer-ppl"><td class="layer-cell" style="color:#5a1e36">👥 PEOPLE</td><td class="area-cell">Team</td><td class="scope-cell">Digital team</td><td><span class="rbadge b-own">Own</span></td></tr>
+        <tr class="layer-enb"><td class="layer-cell" style="color:#6b5033">🌐 ENABLER</td><td class="area-cell">English</td><td class="scope-cell">Report, explain, present</td><td><span class="rbadge b-core">OWN (C1)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ SECTION 2: DOMAIN BOXES ═══ -->
+  <div class="sec-label" style="margin-top:44px">Domain Detail · Click each to explore</div>
+
+  <div class="domain-grid">
+
+    <a class="dbox" href="dm-business.html">
+      <div class="dbox-accent" style="background:linear-gradient(90deg,var(--terra),var(--terra2))"></div>
+      <div class="dbox-inner">
+        <div class="dbox-top"><div class="dbox-icon" style="background:var(--sand2)">🏢</div><span class="rbadge b-contrib" style="font-size:9px">Contribute → Own</span></div>
+        <div class="dbox-title">Business</div>
+        <div class="dbox-sub">Strategy, planning, management layer and Sales alignment.</div>
+        <div class="dbox-areas">
+          <div class="dbox-area"><span class="dbox-area-name">Strategy &amp; Planning</span><span class="rbadge b-contrib" style="font-size:9px">Contribute</span></div>
+          <div class="dbox-area"><span class="dbox-area-name">Management Layer</span><span class="rbadge b-own" style="font-size:9px">Own</span></div>
+          <div class="dbox-area"><span class="dbox-area-name">Sales &amp; CRM</span><span class="rbadge b-align" style="font-size:9px">Align</span></div>
+        </div>
+      </div>
+      <div class="dbox-footer"><span class="dbox-status">Coming soon</span><span class="dbox-arrow">→</span></div>
+    </a>
+
+    <a class="dbox" href="dm-system.html">
+      <div class="dbox-accent" style="background:linear-gradient(90deg,var(--slate),var(--slate2))"></div>
+      <div class="dbox-inner">
+        <div class="dbox-top"><div class="dbox-icon" style="background:var(--slate3)">⚙️</div><span class="rbadge b-own" style="font-size:9px">Own</span></div>
+        <div class="dbox-title">System</div>
+        <div class="dbox-sub">Tracking, analytics, CRM and automation across the digital funnel.</div>
+        <div class="dbox-areas">
+          <div class="dbox-area"><span class="dbox-area-name">Data &amp; Analytics</span><span class="rbadge b-own" style="font-size:9px">Own</span></div>
+          <div class="dbox-area"><span class="dbox-area-name">CRM &amp; Automation</span><span class="rbadge b-coown" style="font-size:9px">Co-own</span></div>
+        </div>
+      </div>
+      <div class="dbox-footer"><span class="dbox-status">Coming soon</span><span class="dbox-arrow">→</span></div>
+    </a>
+
+    <a class="dbox" href="dm-execution.html" style="border-color:var(--terra);border-width:1.5px">
+      <div class="dbox-accent" style="background:linear-gradient(90deg,var(--gold),var(--gold2))"></div>
+      <div class="dbox-inner">
+        <div class="dbox-top"><div class="dbox-icon" style="background:var(--terra2)">🚀</div><span class="rbadge b-core" style="font-size:9px">OWN — CORE</span></div>
+        <div class="dbox-title">Execution</div>
+        <div class="dbox-sub">Core focus — SEO, Ads, Website, CRO and content distribution.</div>
+        <div class="dbox-areas">
+          <div class="dbox-area"><span class="dbox-area-name">Digital (SEO, Ads, CRO)</span><span class="rbadge b-core" style="font-size:9px">OWN Core</span></div>
+          <div class="dbox-area"><span class="dbox-area-name">Content</span><span class="rbadge b-cowork" style="font-size:9px">Co-work</span></div>
+          <div class="dbox-area"><span class="dbox-area-name">Social / Event</span><span class="rbadge b-support" style="font-size:9px">Support</span></div>
+        </div>
+      </div>
+      <div class="dbox-footer"><span class="dbox-status">Coming soon</span><span class="dbox-arrow">→</span></div>
+    </a>
+
+    <a class="dbox" href="dm-support.html">
+      <div class="dbox-accent" style="background:linear-gradient(90deg,var(--sage),var(--sage2))"></div>
+      <div class="dbox-inner">
+        <div class="dbox-top"><div class="dbox-icon" style="background:var(--sage2)">🎨</div><span class="rbadge b-cowork" style="font-size:9px">Co-work</span></div>
+        <div class="dbox-title">Support</div>
+        <div class="dbox-sub">Collaborate with Design team to deliver UX/UI and high-converting landing pages.</div>
+        <div class="dbox-areas">
+          <div class="dbox-area"><span class="dbox-area-name">Design (UX/UI, Landing page)</span><span class="rbadge b-cowork" style="font-size:9px">Co-work</span></div>
+        </div>
+      </div>
+      <div class="dbox-footer"><span class="dbox-status">Coming soon</span><span class="dbox-arrow">→</span></div>
+    </a>
+
+    <a class="dbox" href="dm-people.html">
+      <div class="dbox-accent" style="background:linear-gradient(90deg,var(--mauve),var(--mauve2))"></div>
+      <div class="dbox-inner">
+        <div class="dbox-top"><div class="dbox-icon" style="background:var(--mauve2)">👥</div><span class="rbadge b-own" style="font-size:9px">Own</span></div>
+        <div class="dbox-title">People</div>
+        <div class="dbox-sub">Manage digital team — assign, review, align and develop team members.</div>
+        <div class="dbox-areas">
+          <div class="dbox-area"><span class="dbox-area-name">Digital Team Management</span><span class="rbadge b-own" style="font-size:9px">Own</span></div>
+        </div>
+      </div>
+      <div class="dbox-footer"><span class="dbox-status">Coming soon</span><span class="dbox-arrow">→</span></div>
+    </a>
+
+    <a class="dbox" href="https://tienduong1989.github.io/health/">
+      <div class="dbox-accent" style="background:linear-gradient(90deg,var(--gold),var(--gold2))"></div>
+      <div class="dbox-inner">
+        <div class="dbox-top"><div class="dbox-icon" style="background:var(--gold2)">🌐</div><span class="rbadge b-core" style="font-size:9px">OWN — C1</span></div>
+        <div class="dbox-title">Enabler</div>
+        <div class="dbox-sub">English at C1 level — report, explain, and present to international stakeholders.</div>
+        <div class="dbox-areas">
+          <div class="dbox-area"><span class="dbox-area-name">English (C1)</span><span class="rbadge b-core" style="font-size:9px">OWN Core</span></div>
+        </div>
+      </div>
+      <div class="dbox-footer"><span class="dbox-status">↗ External resource</span><span class="dbox-arrow">→</span></div>
+    </a>
+
+  </div>
+
+  <!-- ═══ SECTION 3: 24M ROADMAP CHECKLIST ═══ -->
+  <div class="sec-label" style="margin-top:44px;cursor:pointer;user-select:none" onclick="toggleRM()">
+    24-Month Roadmap · Stage Checklist
+    <span id="rm-tog" style="font-weight:400;font-size:11px;color:var(--ink3);margin-left:4px">▾ Expanded</span>
+  </div>
+
+  <div id="rm-wrap">
+    <div class="prog-wrap">
+      <div class="prog-bar-bg"><div class="prog-bar" id="prog-bar" style="width:0%"></div></div>
+      <span id="prog-text" style="font-size:11px;color:var(--ink3);white-space:nowrap">0 / 0 tasks</span>
+    </div>
+    <p style="font-size:11px;color:var(--ink3);margin-bottom:18px">Check off each task to track progress. Saved automatically in this browser. Click the file icon to open notes for that topic.</p>
+    <div id="roadmap"></div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span>← <a href="index.html" style="color:var(--ink3);text-decoration:none">Back to Home</a></span>
+  <span>Career Hub · Private · 2026</span>
+</div>
+
+<script>
+var rmOpen=true;
+function toggleRM(){
+  rmOpen=!rmOpen;
+  document.getElementById('rm-wrap').style.display=rmOpen?'block':'none';
+  document.getElementById('rm-tog').textContent=rmOpen?'▾ Expanded':'▸ Collapsed';
+}
+
+var FILE_ICON='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 2H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V6L9 2z"/><path d="M9 2v4h4"/><path d="M5 8h6M5 11h4"/></svg>';
+
+var PHASES=[
+  {id:'p1',phase:'Phase 1',pill:'pill-p1',
+   title:'Digital Lead → Senior Digital Lead',period:'Month 1–12',
+   stages:[
+    {name:'Stage 1 · Foundation',period:'Apr – Jun',folder:'stages/stage1',
+     tasks:[
+      {label:'Understand GA4: traffic / source / conversion',file:'ga4-analytics.html'},
+      {label:'Audit tracking setup (form submit, CTA click)',file:'tracking-audit.html'},
+      {label:'Define funnel: Traffic → Lead',file:'funnel-definition.html'},
+      {label:'Track CVR by page',file:'cvr-tracking.html'},
+      {label:'Identify BOFU keywords',file:'bofu-keywords.html'},
+      {label:'Map keyword → service page',file:'keyword-page-map.html'},
+      {label:'Audit website UX/UI',file:'ux-audit.html'},
+      {label:'Define clear CTAs',file:'cta-definition.html'},
+      {label:'Optimize forms (short + clear)',file:'form-optimization.html'}
+    ]},
+    {name:'Stage 2 · Build Inbound System',period:'Jul – Sep',folder:'stages/stage2',
+     tasks:[
+      {label:'Build topic cluster by industry',file:'topic-cluster.html'},
+      {label:'Define content funnel (Blog → Case Study → Service)',file:'content-funnel.html'},
+      {label:'Write ≥ 2 case studies',file:'case-study.html'},
+      {label:'Publish industry pages',file:'industry-pages.html'},
+      {label:'Set up internal linking',file:'internal-linking.html'},
+      {label:'Track keyword → lead pipeline',file:'keyword-lead-tracking.html'}
+    ]},
+    {name:'Stage 3 · Conversion & Lead Quality',period:'Oct – Dec',folder:'stages/stage3',
+     tasks:[
+      {label:'Analyze CVR by page',file:'cvr-by-page.html'},
+      {label:'Optimize CTAs',file:'cta-optimization.html'},
+      {label:'A/B test landing pages',file:'landing-page-test.html'},
+      {label:'Collaborate with Sales on lead quality',file:'lead-quality.html'},
+      {label:'Distinguish junk vs qualified leads',file:'junk-vs-qualified.html'},
+      {label:'Define MQL with Sales team',file:'mql-definition.html'}
+    ]},
+    {name:'Stage 4 · Scale & System Thinking',period:'Jan – Mar',folder:'stages/stage4',
+     tasks:[
+      {label:'Expand keyword cluster',file:'keyword-cluster-expansion.html'},
+      {label:'Replicate high-CVR pages',file:'high-cvr-replication.html'},
+      {label:'Understand Google Ads / LinkedIn Ads fundamentals',file:'google-linkedin-ads.html'},
+      {label:'Run small paid Ads test',file:'ads-test.html'},
+      {label:'Define SEO / Content / Website team roles',file:'team-roles.html'}
+    ]}
+  ]},
+  {id:'p2',phase:'Phase 2',pill:'pill-p2',
+   title:'Senior Digital Lead → Digital Marketing Manager',period:'Month 13–24',
+   stages:[
+    {name:'Stage 5 · Multi-channel & Data',period:'Apr – Jun',folder:'stages/stage5',
+     tasks:[
+      {label:'Set up Google Ads / LinkedIn Ads campaigns',file:'ads-setup.html'},
+      {label:'Track CPL / conversion by channel',file:'cpl-tracking.html'},
+      {label:'Compare SEO vs Ads performance',file:'seo-vs-ads.html'},
+      {label:'Build full-funnel dashboard',file:'funnel-dashboard.html'},
+      {label:'Analyze channel performance',file:'channel-performance.html'}
+    ]},
+    {name:'Stage 6 · Strategy',period:'Jul – Sep',folder:'stages/stage6',
+     tasks:[
+      {label:'Define ICP (Ideal Customer Profile)',file:'icp-definition.html'},
+      {label:'Map full funnel end-to-end',file:'full-funnel.html'},
+      {label:'Define role of each channel',file:'channel-role.html'},
+      {label:'Set digital KPIs',file:'kpi-definition.html'},
+      {label:'Build Quarterly Plan',file:'quarterly-plan.html'}
+    ]},
+    {name:'Stage 7 · Leadership',period:'Oct – Dec',folder:'stages/stage7',
+     tasks:[
+      {label:'Assign tasks to team members',file:'task-assignment.html'},
+      {label:'Review team output and give feedback',file:'output-review.html'},
+      {label:'Align Content / Design / Sales teams',file:'team-alignment.html'},
+      {label:'Produce weekly performance report',file:'weekly-report.html'},
+      {label:'Write monthly marketing insight',file:'monthly-insight.html'},
+      {label:'Lead quarterly review session',file:'quarterly-review.html'}
+    ]},
+    {name:'Stage 8 · Business Impact',period:'Jan – Mar',folder:'stages/stage8',
+     tasks:[
+      {label:'Understand MQL → SQL → Deal pipeline',file:'mql-sql-deal.html'},
+      {label:'Track full conversion funnel',file:'conversion-funnel.html'},
+      {label:'Optimize channel mix for best ROI',file:'channel-mix.html'},
+      {label:'Optimize marketing budget allocation',file:'budget-optimization.html'}
+    ]}
+  ]}
+];
+
+var container=document.getElementById('roadmap');
+var allBoxes=[];
+
+PHASES.forEach(function(ph){
+  var card=document.createElement('div');
+  card.className='roadmap-card';
+
+  var hdr=document.createElement('div');
+  hdr.className='phase-hdr';
+  hdr.innerHTML='<div class="phase-hdr-left"><span class="phase-pill '+ph.pill+'">'+ph.phase+'</span><span class="phase-title" style="margin-left:4px">'+ph.title+'</span><span class="phase-period" style="margin-left:8px">'+ph.period+'</span></div><span class="phase-toggle open" id="tog-'+ph.id+'">▾</span>';
+
+  var body=document.createElement('div');
+  body.className='phase-body';
+
+  ph.stages.forEach(function(st,si){
+    var shdr=document.createElement('div');
+    shdr.className='stage-hdr';
+    shdr.innerHTML='<div><span class="stage-name">'+st.name+'</span> <span class="stage-period">· '+st.period+'</span></div><span class="stage-folder" title="Folder: '+st.folder+'">📁 '+st.folder+'</span>';
+    body.appendChild(shdr);
+
+    var cl=document.createElement('div');
+    cl.className='checklist';
+
+    st.tasks.forEach(function(task,ti){
+      var key='ch_dm_'+ph.id+'_s'+si+'_t'+ti;
+      var item=document.createElement('div');
+      item.className='check-item'+(localStorage.getItem(key)==='1'?' done':'');
+
+      var cb=document.createElement('input');
+      cb.type='checkbox';
+      cb.className='check-cb';
+      cb.checked=localStorage.getItem(key)==='1';
+      cb.addEventListener('change',function(){
+        localStorage.setItem(key,this.checked?'1':'0');
+        item.classList.toggle('done',this.checked);
+        updateProgress();
+      });
+
+      var main=document.createElement('div');
+      main.className='check-main';
+
+      var lbl=document.createElement('label');
+      lbl.className='check-label';
+      lbl.textContent=task.label;
+      lbl.style.cursor='pointer';
+      lbl.addEventListener('click',function(){cb.click();});
+
+      var fileLink=document.createElement('a');
+      fileLink.className='file-link';
+      fileLink.href=st.folder+'/'+task.file;
+      fileLink.title='Open notes: '+task.label;
+      fileLink.innerHTML=FILE_ICON+'Notes';
+
+      main.appendChild(lbl);
+      main.appendChild(fileLink);
+      item.appendChild(cb);
+      item.appendChild(main);
+      cl.appendChild(item);
+      allBoxes.push(cb);
+    });
+
+    body.appendChild(cl);
+  });
+
+  hdr.addEventListener('click',function(){
+    var open=body.style.display!=='none';
+    body.style.display=open?'none':'block';
+    document.getElementById('tog-'+ph.id).classList.toggle('open',!open);
+  });
+
+  card.appendChild(hdr);
+  card.appendChild(body);
+  container.appendChild(card);
+});
+
+function updateProgress(){
+  var total=allBoxes.length,done=allBoxes.filter(function(b){return b.checked}).length;
+  var pct=total?Math.round(done/total*100):0;
+  document.getElementById('prog-bar').style.width=pct+'%';
+  document.getElementById('prog-text').textContent=done+' / '+total+' tasks';
+  document.getElementById('hero-pct').textContent=pct+'%';
+}
+updateProgress();
+</script>
+</body>
+</html>
