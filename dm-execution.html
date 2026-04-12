@@ -42,7 +42,7 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 .bc-current{color:rgba(255,255,255,.65);font-weight:600}
 
 /* TAB NAV */
-.tab-nav{background:#fff;border-bottom:2px solid var(--sand2);padding:0 40px;display:flex;align-items:stretch;gap:0;position:sticky;top:52px;z-index:15;overflow-x:auto}
+.tab-nav{background:#fff;border-bottom:2px solid var(--sand2);padding:0 40px;display:flex;align-items:stretch;position:sticky;top:52px;z-index:15;overflow-x:auto}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-group{display:flex;align-items:stretch;padding-right:16px;margin-right:8px;border-right:1px solid var(--sand3);gap:2px}
 .tab-group:last-child{border-right:none}
@@ -60,12 +60,12 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 .tab-panel{display:none}
 .tab-panel.active{display:block}
 
-/* FUNNEL STAGE BANNER — fixed across all tabs */
-.funnel-banner{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden;margin-bottom:20px}
-.funnel-banner-hdr{padding:9px 16px;background:var(--sand2);display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
-.funnel-banner-hdr-left{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2)}
-.funnel-banner-hdr-right{font-size:11px;color:var(--ink3)}
-.funnel-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+/* FUNNEL STAGE BANNER — top of all tabs */
+.fsb{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden;margin-bottom:20px}
+.fsb-hdr{padding:9px 16px;background:var(--sand2);display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.fsb-hdr-l{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2)}
+.fsb-hdr-r{font-size:11px;color:var(--ink3)}
+.fsb-body{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 .fstage{padding:12px 14px;border-right:1px solid var(--sand2)}
 .fstage:last-child{border-right:none}
 .fstage-attract{background:var(--attract-bg)}
@@ -84,25 +84,36 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 .sec-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .sec-label:first-child{margin-top:0}
 
-/* CHANNEL OVERVIEW GRID */
-.channel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.ch-card{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden}
-.ch-card-top{padding:14px 16px 10px;border-bottom:1px solid var(--sand3)}
-.ch-card-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.ch-card-title{font-size:15px;font-weight:700;color:var(--ink)}
-.ch-card-body{padding:10px 16px 14px}
-.ch-card-desc{font-size:12px;color:var(--ink3);line-height:1.6;margin-bottom:10px}
-.ch-card-subs{display:flex;flex-direction:column;gap:4px}
-.ch-sub{font-size:11px;color:var(--ink2);padding:4px 8px;background:var(--bg2);border-radius:5px;display:flex;align-items:center;gap:6px}
-.ch-sub-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+/* KNOWLEDGE BOX GRID */
+.box-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.box-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+
+/* KNOWLEDGE BOX */
+.kbox{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s;cursor:pointer}
+.kbox:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(44,35,24,.09);border-color:var(--sand)}
+.kbox-top{padding:14px 16px 10px;border-bottom:1px solid var(--sand3);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.kbox-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.kbox-num{font-size:10px;font-weight:700;color:var(--ink3);letter-spacing:.03em}
+.kbox-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em}
+.kbox-desc{font-size:11px;color:var(--ink3);line-height:1.6;margin-bottom:10px}
+.kbox-body{padding:10px 16px 14px}
+.kbox-items{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.kbox-item{font-size:11px;color:var(--ink2);padding:4px 8px;background:var(--bg2);border-radius:5px;display:flex;align-items:center;gap:6px}
+.kbox-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.kbox-footer{border-top:1px solid var(--sand3);padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
+.kbox-status{font-size:10px;color:var(--ink3)}
+.kbox-link{font-size:10px;font-weight:700;color:var(--slate);text-decoration:none;padding:2px 8px;background:var(--slate3);border-radius:5px}
+.kbox-link:hover{opacity:.8}
+
+/* RBADGE */
 .rbadge{display:inline-flex;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.03em;white-space:nowrap}
 .b-core{background:var(--terra2);color:#5a2a10}
 .b-own{background:var(--sage2);color:#2a4a22}
 .b-cowork{background:var(--sage2);color:#2a4a22}
 .b-support{background:var(--sand3);color:var(--ink2)}
 
-/* INBOUND / OUTBOUND SPLIT */
-.io-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:0}
+/* OVERVIEW SPECIFIC */
+.io-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 .io-box{border-radius:var(--r);padding:14px 16px;border:1px solid}
 .io-box-in{background:var(--inbound);border-color:var(--inbound-b)}
 .io-box-out{background:var(--outbound);border-color:var(--outbound-b)}
@@ -111,8 +122,27 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 .io-box-out .io-box-title{color:var(--outbound-t)}
 .io-box-items{font-size:12px;color:var(--ink2);line-height:1.8}
 .io-box-items span{display:block}
+.ch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ch-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.ch-card{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden}
+.ch-top{padding:12px 14px 8px;border-bottom:1px solid var(--sand3);display:flex;align-items:center;justify-content:space-between}
+.ch-title{font-size:14px;font-weight:700;color:var(--ink)}
+.ch-body{padding:10px 14px 12px}
+.ch-desc{font-size:11px;color:var(--ink3);line-height:1.6;margin-bottom:8px}
+.ch-subs{display:flex;flex-direction:column;gap:3px}
+.ch-sub{font-size:11px;color:var(--ink2);padding:3px 7px;background:var(--bg2);border-radius:5px;display:flex;align-items:center;gap:5px}
+.ch-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 
-/* TABLE */
+/* KPI TABLE */
+.kpi-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden}
+.kpi-table thead tr{background:var(--sand2)}
+.kpi-table thead th{padding:8px 12px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.kpi-table tbody tr{border-bottom:1px solid var(--sand3)}
+.kpi-table tbody tr:last-child{border-bottom:none}
+.kpi-table tbody tr:hover{background:var(--bg2)}
+.kpi-table td{padding:8px 12px;vertical-align:middle}
+
+/* KEYWORD TABLE */
 .table-wrap{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden}
 .table-toolbar{padding:10px 14px;border-bottom:1px solid var(--sand2);display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--bg2)}
 .filter-btn{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;border:1px solid var(--sand2);background:#fff;cursor:pointer;transition:all .15s;color:var(--ink2);font-family:Arial,sans-serif}
@@ -131,7 +161,7 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 .kw-table tbody tr:last-child{border-bottom:none}
 .kw-table tbody tr:hover{background:var(--bg2)}
 .kw-table tbody tr.hidden{display:none}
-.kw-table td{padding:9px 12px;vertical-align:middle}
+.kw-table td{padding:8px 12px;vertical-align:middle}
 .kw-kw{font-weight:600;color:var(--ink);font-size:12px}
 .stage-pill{display:inline-flex;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
 .sp-attract{background:var(--attract-bg);color:var(--attract-t)}
@@ -154,33 +184,30 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 .bv-off{background:var(--sand3)}
 .th-info{width:13px;height:13px;border-radius:50%;background:var(--sand);color:var(--ink2);font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;cursor:help;position:relative;flex-shrink:0;margin-left:3px;vertical-align:middle}
 .th-info:hover .tip{display:block}
-.tip{display:none;position:absolute;top:18px;left:0;background:var(--ink);color:#fff;font-size:11px;font-weight:400;padding:8px 10px;border-radius:7px;width:210px;line-height:1.6;z-index:200;letter-spacing:0;text-transform:none;cursor:default;white-space:normal;font-family:Arial,sans-serif}
-.sort-ic{margin-left:2px;opacity:.4;font-size:9px}
-.sorted .sort-ic{opacity:1}
+.tip{display:none;position:absolute;top:18px;left:0;background:var(--ink);color:#fff;font-size:11px;font-weight:400;padding:8px 10px;border-radius:7px;width:200px;line-height:1.6;z-index:200;letter-spacing:0;text-transform:none;cursor:default;white-space:normal;font-family:Arial,sans-serif}
 .add-row-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;font-size:12px;color:var(--slate);font-weight:600;cursor:pointer;border-top:1px solid var(--sand2);background:var(--bg2);transition:background .15s;border:none;width:100%;text-align:left;font-family:Arial,sans-serif}
 .add-row-btn:hover{background:var(--sand3)}
 .legend-row{display:flex;gap:14px;flex-wrap:wrap;padding:8px 14px;background:var(--bg2);border-top:1px solid var(--sand2);font-size:11px;color:var(--ink3)}
 .leg{display:flex;align-items:center;gap:4px}
 
-/* INFO CARD */
-.info-card{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);padding:16px 20px;margin-bottom:12px}
-.info-card h3{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px}
-.info-card p{font-size:12px;color:var(--ink2);line-height:1.7}
+/* FUNNEL FRAMEWORK (inbound) — bottom of SEO + Website tabs */
+.ffb{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden;margin-top:24px}
+.ffb-hdr{padding:9px 16px;background:var(--bg2);display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;border-bottom:1px solid var(--sand2)}
+.ffb-hdr-l{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2)}
+.ffb-hdr-r{font-size:11px;color:var(--ink3)}
+.ffb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.ffb-step{padding:12px 14px;border-right:1px solid var(--sand2);border-bottom:1px solid var(--sand2)}
+.ffb-step:nth-child(3n){border-right:none}
+.ffb-step:nth-child(7),.ffb-step:nth-child(8),.ffb-step:nth-child(9){border-bottom:none}
+.ffb-num{font-size:12px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.ffb-num-badge{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;color:#fff}
+.ffb-items{font-size:12px;color:var(--ink2);line-height:1.8}
 
-/* COMING SOON */
-.coming{background:#fff;border:1.5px dashed var(--sand2);border-radius:var(--r);padding:36px;text-align:center;color:var(--ink3)}
-.coming-icon{font-size:26px;margin-bottom:10px}
-.coming-title{font-size:14px;font-weight:700;color:var(--ink2);margin-bottom:5px}
+/* COMING */
+.coming{background:#fff;border:1.5px dashed var(--sand2);border-radius:var(--r);padding:32px;text-align:center;color:var(--ink3)}
+.coming-icon{font-size:24px;margin-bottom:8px}
+.coming-title{font-size:13px;font-weight:700;color:var(--ink2);margin-bottom:4px}
 .coming-sub{font-size:12px;line-height:1.65}
-
-/* LINK BUILDING TABLE */
-.lb-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--sand2)}
-.lb-table thead tr{background:var(--sand2)}
-.lb-table thead th{padding:8px 12px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
-.lb-table tbody tr{border-bottom:1px solid var(--sand3)}
-.lb-table tbody tr:last-child{border-bottom:none}
-.lb-table tbody tr:hover{background:var(--bg2)}
-.lb-table td{padding:8px 12px;vertical-align:middle;font-size:12px;color:var(--ink2)}
 
 /* FOOTER */
 .footer{border-top:1px solid var(--sand2);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--ink3)}
@@ -188,7 +215,8 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 @media(max-width:760px){
   .topbar,.hero,.page,.footer{padding-left:20px;padding-right:20px}
   .tab-nav{padding:0 20px}
-  .funnel-stages,.channel-grid,.io-split{grid-template-columns:1fr 1fr}
+  .box-grid,.box-grid-2,.ch-grid,.ch-grid-3,.fsb-body,.ffb-grid{grid-template-columns:1fr 1fr}
+  .io-split{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -216,7 +244,7 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 <div class="hero">
   <div class="hero-tag">OWN — CORE · Execution</div>
   <h1>🚀 <em>Execution</em> Domain</h1>
-  <p class="hero-sub">Primary ownership across all digital channels. Navigate each channel using the tabs below — each tab shows its Inbound / Outbound type and specific frameworks.</p>
+  <p class="hero-sub">Primary ownership across all digital channels. Each channel tab contains knowledge boxes — expand as you build expertise.</p>
   <div class="breadcrumb">
     <span class="bc-item">Track B · Digital Marketing Manager</span>
     <span class="bc-sep">›</span>
@@ -233,42 +261,30 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
   </div>
   <div class="tab-group">
     <span class="tab-group-label">Digital · Core</span>
-    <button class="tab-btn" onclick="switchTab('seo',this)" data-bc="SEO">
-      SEO <span class="io-badge io-in">Inbound</span>
-    </button>
-    <button class="tab-btn" onclick="switchTab('ads',this)" data-bc="Paid Ads">
-      Paid Ads <span class="io-badge io-out">Outbound</span>
-    </button>
-    <button class="tab-btn" onclick="switchTab('website',this)" data-bc="Website &amp; CRO">
-      Website / CRO <span class="io-badge io-both">Both</span>
-    </button>
+    <button class="tab-btn" onclick="switchTab('seo',this)" data-bc="SEO">SEO <span class="io-badge io-in">Inbound</span></button>
+    <button class="tab-btn" onclick="switchTab('ads',this)" data-bc="Paid Ads">Paid Ads <span class="io-badge io-out">Outbound</span></button>
+    <button class="tab-btn" onclick="switchTab('website',this)" data-bc="Website / CRO">Website / CRO <span class="io-badge io-both">Both</span></button>
   </div>
   <div class="tab-group">
     <span class="tab-group-label">Content · Co-work</span>
-    <button class="tab-btn" onclick="switchTab('content',this)" data-bc="Content">
-      Content <span class="io-badge io-in">Inbound</span>
-    </button>
+    <button class="tab-btn" onclick="switchTab('content',this)" data-bc="Content">Content <span class="io-badge io-in">Inbound</span></button>
   </div>
   <div class="tab-group">
     <span class="tab-group-label">Support</span>
-    <button class="tab-btn" onclick="switchTab('social',this)" data-bc="Social / Event">
-      Social / Event <span class="io-badge io-out">Outbound</span>
-    </button>
+    <button class="tab-btn" onclick="switchTab('social',this)" data-bc="Social / Event">Social / Event <span class="io-badge io-out">Outbound</span></button>
   </div>
 </div>
 
 <div class="page">
 
-<!-- ══════════════════════════════════
-     FUNNEL STAGE BANNER — fixed on all tabs (collapsible)
-══════════════════════════════════ -->
-<div class="funnel-banner">
-  <div class="funnel-banner-hdr" onclick="toggleFunnel()">
-    <span class="funnel-banner-hdr-left">Funnel Stage Reference · B2B</span>
-    <span class="funnel-banner-hdr-right" id="funnel-tog">▾ Show</span>
+<!-- ══ FUNNEL STAGE REFERENCE — top of ALL tabs, collapsible ══ -->
+<div class="fsb">
+  <div class="fsb-hdr" onclick="toggleFSB()">
+    <span class="fsb-hdr-l">Funnel Stage Reference · B2B</span>
+    <span class="fsb-hdr-r" id="fsb-tog">▾ Show</span>
   </div>
-  <div id="funnel-body" style="display:none">
-    <div class="funnel-stages">
+  <div id="fsb-body" style="display:none">
+    <div class="fsb-body">
       <div class="fstage fstage-attract">
         <div class="fstage-name">Attract</div>
         <div class="fstage-equiv">≡ TOFU · Awareness</div>
@@ -293,14 +309,13 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
   </div>
 </div>
 
-<!-- ══════════════════════════════════
+<!-- ══════════════════════════════
      TAB: OVERVIEW
-══════════════════════════════════ -->
+══════════════════════════════ -->
 <div class="tab-panel active" id="panel-overview">
 
   <div class="sec-label" style="margin-top:0">Channel Map · Inbound vs Outbound</div>
-
-  <div class="io-split" style="margin-bottom:16px">
+  <div class="io-split">
     <div class="io-box io-box-in">
       <div class="io-box-title">Inbound — Pull</div>
       <div class="io-box-items">
@@ -319,114 +334,109 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
     </div>
   </div>
 
-  <div class="sec-label">Channel Detail</div>
-  <div class="channel-grid">
-
+  <div class="sec-label">Channel Overview</div>
+  <div class="ch-grid">
     <div class="ch-card">
-      <div class="ch-card-top">
-        <div class="ch-card-row">
-          <div class="ch-card-title">SEO</div>
-          <div style="display:flex;gap:5px">
-            <span class="io-badge io-in">Inbound</span>
-            <span class="rbadge b-core">OWN Core</span>
-          </div>
-        </div>
+      <div class="ch-top">
+        <div class="ch-title">SEO</div>
+        <div style="display:flex;gap:5px"><span class="io-badge io-in">Inbound</span><span class="rbadge b-core">OWN Core</span></div>
       </div>
-      <div class="ch-card-body">
-        <div class="ch-card-desc">Drive organic traffic through keyword strategy, on-page optimization, and link building.</div>
-        <div class="ch-card-subs">
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--terra)"></span>Keyword &amp; Content Map</div>
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--terra)"></span>On-page optimization</div>
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--terra)"></span>Link Building</div>
+      <div class="ch-body">
+        <div class="ch-desc">Organic traffic via keyword strategy, content, link building, and technical optimization.</div>
+        <div class="ch-subs">
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--terra)"></span>Keyword &amp; Content Map</div>
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--terra)"></span>Link Building</div>
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--terra)"></span>On-site Checklist · Technical SEO</div>
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--terra)"></span>Content Cluster · Competitor Analysis</div>
         </div>
       </div>
     </div>
-
     <div class="ch-card">
-      <div class="ch-card-top">
-        <div class="ch-card-row">
-          <div class="ch-card-title">Paid Ads</div>
-          <div style="display:flex;gap:5px">
-            <span class="io-badge io-out">Outbound</span>
-            <span class="rbadge b-core">OWN Core</span>
-          </div>
-        </div>
+      <div class="ch-top">
+        <div class="ch-title">Paid Ads</div>
+        <div style="display:flex;gap:5px"><span class="io-badge io-out">Outbound</span><span class="rbadge b-core">OWN Core</span></div>
       </div>
-      <div class="ch-card-body">
-        <div class="ch-card-desc">Generate leads at controlled CPL via Google Search (high intent) and LinkedIn (ICP targeting).</div>
-        <div class="ch-card-subs">
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--slate)"></span>Google Ads</div>
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--slate)"></span>LinkedIn Ads</div>
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--slate)"></span>CPL tracking &amp; budget</div>
+      <div class="ch-body">
+        <div class="ch-desc">Controlled lead gen via Google Search (high intent) and LinkedIn (ICP targeting).</div>
+        <div class="ch-subs">
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--slate)"></span>Campaign Structure</div>
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--slate)"></span>Audience &amp; ICP Targeting</div>
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--slate)"></span>CPL Tracking &amp; Budget</div>
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--slate)"></span>Ad Copy · Retargeting</div>
         </div>
       </div>
     </div>
-
-    <div class="ch-card">
-      <div class="ch-card-top">
-        <div class="ch-card-row">
-          <div class="ch-card-title">Website / CRO</div>
-          <div style="display:flex;gap:5px">
-            <span class="io-badge io-both">Both</span>
-            <span class="rbadge b-core">OWN Core</span>
-          </div>
-        </div>
-      </div>
-      <div class="ch-card-body">
-        <div class="ch-card-desc">Destination for all channels. Optimize for conversion — landing pages, forms, CTAs, page speed.</div>
-        <div class="ch-card-subs">
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--gold)"></span>Landing page optimization</div>
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--gold)"></span>Lead Funnel / CVR tracking</div>
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--gold)"></span>A/B testing</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ch-card">
-      <div class="ch-card-top">
-        <div class="ch-card-row">
-          <div class="ch-card-title">Content</div>
-          <div style="display:flex;gap:5px">
-            <span class="io-badge io-in">Inbound</span>
-            <span class="rbadge b-cowork">Co-work</span>
-          </div>
-        </div>
-      </div>
-      <div class="ch-card-body">
-        <div class="ch-card-desc">You define strategy and briefs. Content team executes. Aligned to Keyword &amp; Content Map.</div>
-        <div class="ch-card-subs">
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--sage)"></span>SEO blog &amp; industry pages</div>
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--sage)"></span>Case studies</div>
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--sage)"></span>Editorial calendar</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ch-card">
-      <div class="ch-card-top">
-        <div class="ch-card-row">
-          <div class="ch-card-title">Social / Event</div>
-          <div style="display:flex;gap:5px">
-            <span class="io-badge io-out">Outbound</span>
-            <span class="rbadge b-support">Support</span>
-          </div>
-        </div>
-      </div>
-      <div class="ch-card-body">
-        <div class="ch-card-desc">Supporting role. Social for content distribution &amp; brand signal. Events/webinars for lead gen when aligned to Convert stage.</div>
-        <div class="ch-card-subs">
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--sand)"></span>Content distribution</div>
-          <div class="ch-sub"><span class="ch-sub-dot" style="background:var(--sand)"></span>Webinar (lead gen)</div>
-        </div>
-      </div>
-    </div>
-
   </div>
-</div>
+  <div class="ch-grid-3">
+    <div class="ch-card">
+      <div class="ch-top">
+        <div class="ch-title">Website / CRO</div>
+        <div style="display:flex;gap:5px"><span class="io-badge io-both">Both</span><span class="rbadge b-core">OWN Core</span></div>
+      </div>
+      <div class="ch-body">
+        <div class="ch-desc">Destination for all channels. Optimize for conversion.</div>
+        <div class="ch-subs">
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--gold)"></span>Lead Funnel &amp; CVR</div>
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--gold)"></span>Landing Page · CRO</div>
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--gold)"></span>Page Speed · A/B Test</div>
+        </div>
+      </div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-top">
+        <div class="ch-title">Content</div>
+        <div style="display:flex;gap:5px"><span class="io-badge io-in">Inbound</span><span class="rbadge b-cowork">Co-work</span></div>
+      </div>
+      <div class="ch-body">
+        <div class="ch-desc">You define strategy. Content team executes.</div>
+        <div class="ch-subs">
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--sage)"></span>Editorial Calendar</div>
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--sage)"></span>Content Brief · Case Study</div>
+        </div>
+      </div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-top">
+        <div class="ch-title">Social / Event</div>
+        <div style="display:flex;gap:5px"><span class="io-badge io-out">Outbound</span><span class="rbadge b-support">Support</span></div>
+      </div>
+      <div class="ch-body">
+        <div class="ch-desc">Distribution &amp; brand signal. Supporting role only.</div>
+        <div class="ch-subs">
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--sand)"></span>Distribution Checklist</div>
+          <div class="ch-sub"><span class="ch-dot" style="background:var(--sand)"></span>Webinar Playbook</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- ══════════════════════════════════
+  <div class="sec-label" style="margin-top:28px">KPI Format · Template per Channel &amp; Funnel Layer</div>
+  <table class="kpi-table">
+    <thead>
+      <tr><th>Funnel Layer</th><th>Channel</th><th>KPI</th><th>Unit</th><th>Sample Target</th><th>Tool</th></tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--attract-bg)"><td rowspan="4"><span style="font-size:10px;font-weight:700;color:var(--attract-t);letter-spacing:.04em;text-transform:uppercase">Attract</span></td><td style="font-weight:700;color:var(--terra)">SEO</td><td style="color:var(--ink2)">Monthly Total Users</td><td style="color:var(--ink3)">Users / mo</td><td style="color:var(--ink2)">[Q2 target] → [Dec target]</td><td style="color:var(--ink3)">GA4</td></tr>
+      <tr style="background:var(--attract-bg)"><td style="font-weight:700;color:var(--terra)">SEO</td><td style="color:var(--ink2)">Organic Search Users</td><td style="color:var(--ink3)">Users / mo</td><td style="color:var(--ink2)">[Q2 target] → [Dec target]</td><td style="color:var(--ink3)">GA4</td></tr>
+      <tr style="background:var(--attract-bg)"><td style="font-weight:700;color:var(--terra)">SEO</td><td style="color:var(--ink2)">Traffic Value / mo</td><td style="color:var(--ink3)">USD (Ahrefs)</td><td style="color:var(--ink2)">$[X] → $[Y] (Ahrefs est.)</td><td style="color:var(--ink3)">Ahrefs</td></tr>
+      <tr style="background:var(--attract-bg)"><td style="font-weight:700;color:var(--terra)">SEO</td><td style="color:var(--ink2)">Domain Rating</td><td style="color:var(--ink3)">Score 0–100</td><td style="color:var(--ink2)">[X] Q2 → [Y] Dec</td><td style="color:var(--ink3)">Ahrefs</td></tr>
+      <tr style="background:var(--engage-bg)"><td rowspan="2"><span style="font-size:10px;font-weight:700;color:var(--engage-t);letter-spacing:.04em;text-transform:uppercase">Engage</span></td><td style="font-weight:700;color:var(--gold)">Website</td><td style="color:var(--ink2)">Service / Landing Pages Live</td><td style="color:var(--ink3)">Count</td><td style="color:var(--ink2)">[X] launch → [Y] Q3 → [Z] Q4</td><td style="color:var(--ink3)">CMS</td></tr>
+      <tr style="background:var(--engage-bg)"><td style="font-weight:700;color:var(--gold)">Website</td><td style="color:var(--ink2)">Bounce Rate</td><td style="color:var(--ink3)">% (lower = better)</td><td style="color:var(--ink2)">≤ [X]% (lower is better)</td><td style="color:var(--ink3)">GA4</td></tr>
+      <tr style="background:var(--convert-bg)"><td rowspan="4"><span style="font-size:10px;font-weight:700;color:var(--convert-t);letter-spacing:.04em;text-transform:uppercase">Convert</span></td><td style="font-weight:700;color:var(--gold)">Website</td><td style="color:var(--ink2)">CVR — Conversion Rate</td><td style="color:var(--ink3)">% sessions → lead</td><td style="color:var(--ink2)">≥ 1% service pages</td><td style="color:var(--ink3)">GA4</td></tr>
+      <tr style="background:var(--convert-bg)"><td style="font-weight:700;color:var(--ink2)">Overall</td><td style="color:var(--ink2)">Leads Generated / mo</td><td style="color:var(--ink3)">Count</td><td style="color:var(--ink2)">[Q2 target] → [annual target]</td><td style="color:var(--ink3)">CRM</td></tr>
+      <tr style="background:var(--convert-bg)"><td style="font-weight:700;color:var(--ink2)">Overall</td><td style="color:var(--ink2)">Total Leads Cumulative</td><td style="color:var(--ink3)">Count (annual)</td><td style="color:var(--ink2)">[Q2 cumul.] → [annual cumul.]</td><td style="color:var(--ink3)">CRM</td></tr>
+      <tr style="background:var(--convert-bg)"><td style="font-weight:700;color:var(--slate)">Paid Ads</td><td style="color:var(--ink2)">CPL — Cost per Lead</td><td style="color:var(--ink3)">USD / lead</td><td style="color:var(--ink2)">≤ $200 LinkedIn · ≤ $150 Google</td><td style="color:var(--ink3)">Ads platform</td></tr>
+      <tr style="background:var(--authority-bg)"><td rowspan="3"><span style="font-size:10px;font-weight:700;color:var(--authority-t);letter-spacing:.04em;text-transform:uppercase">Authority</span></td><td style="font-weight:700;color:var(--terra)">SEO</td><td style="color:var(--ink2)">Quality Backlinks / mo</td><td style="color:var(--ink3)">Count</td><td style="color:var(--ink2)">[X] quality links / mo</td><td style="color:var(--ink3)">Ahrefs</td></tr>
+      <tr style="background:var(--authority-bg)"><td style="font-weight:700;color:var(--terra)">SEO</td><td style="color:var(--ink2)">Technical SEO Score</td><td style="color:var(--ink3)">% health score</td><td style="color:var(--ink2)">≥ 90% (audit quarterly)</td><td style="color:var(--ink3)">Ahrefs / Screaming Frog</td></tr>
+      <tr style="background:var(--authority-bg)"><td style="font-weight:700;color:var(--sage)">Content</td><td style="color:var(--ink2)">Blog Articles Published / mo</td><td style="color:var(--ink3)">Count</td><td style="color:var(--ink2)">[X] articles / mo</td><td style="color:var(--ink3)">CMS</td></tr>
+    </tbody>
+  </table>
+
+</div><!-- /overview -->
+
+<!-- ══════════════════════════════
      TAB: SEO
-══════════════════════════════════ -->
+══════════════════════════════ -->
 <div class="tab-panel" id="panel-seo">
 
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
@@ -434,15 +444,153 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
     <span style="font-size:12px;color:var(--ink3)">People search → find you organically. You do not pay per click.</span>
   </div>
 
-  <!-- KEYWORD & CONTENT MAP -->
-  <div class="sec-label" style="margin-top:0">
-    Keyword &amp; Content Map
-    <span style="font-weight:400;font-size:11px;color:var(--ink3)">Add your real keywords below</span>
-  </div>
+  <div class="sec-label" style="margin-top:0">SEO · Knowledge Boxes</div>
+  <div class="box-grid">
 
+    <!-- BOX 1: Keyword & Content Map -->
+    <div class="kbox">
+      <div class="kbox-top">
+        <div class="kbox-icon" style="background:var(--terra2)">🗺</div>
+        <span class="kbox-num">Box 1</span>
+      </div>
+      <div class="kbox-body">
+        <div class="kbox-title">Keyword &amp; Content Map</div>
+        <div class="kbox-desc">Map keywords to funnel stage, content type, and target page. Primary planning tool for SEO.</div>
+        <div class="kbox-items">
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Keyword · Intent · Volume · Difficulty</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Business Value · Content Type</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Target Page · CTA · Priority</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Funnel Stage (Attract/Engage/Convert/Authority)</div>
+        </div>
+        <div class="kbox-footer">
+          <span class="kbox-status">Sample data — edit below</span>
+          <a class="kbox-link" href="#kw-map-section">View table ↓</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOX 2: Link Building -->
+    <div class="kbox">
+      <div class="kbox-top">
+        <div class="kbox-icon" style="background:var(--slate3)">🔗</div>
+        <span class="kbox-num">Box 2</span>
+      </div>
+      <div class="kbox-body">
+        <div class="kbox-title">Link Building</div>
+        <div class="kbox-desc">Earn backlinks to increase Domain Rating and page authority. Quality over quantity.</div>
+        <div class="kbox-items">
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Guest posting (Outbound)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Directory listings — Clutch, GoodFirms (Inbound)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>PR / Media mentions (Outbound)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Case study co-publish with clients (Inbound)</div>
+        </div>
+        <div class="kbox-footer">
+          <span class="kbox-status">Target: 8 quality links / mo</span>
+          <a class="kbox-link" href="#lb-section">View tactics ↓</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOX 3: On-site Checklist -->
+    <div class="kbox">
+      <div class="kbox-top">
+        <div class="kbox-icon" style="background:var(--sage2)">✅</div>
+        <span class="kbox-num">Box 3</span>
+      </div>
+      <div class="kbox-body">
+        <div class="kbox-title">On-site Checklist</div>
+        <div class="kbox-desc">Per-page checklist. Run every time you publish or optimize a page.</div>
+        <div class="kbox-items">
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Title tag + meta description (keyword in)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>H1 unique · H2/H3 structured</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Keyword in URL · first 100 words · alt text</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Internal links (to pillar + related pages)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>CTA clear · word count sufficient</div>
+        </div>
+        <div class="kbox-footer">
+          <span class="kbox-status">Run per page · not one-time</span>
+          <span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOX 4: Technical SEO -->
+    <div class="kbox">
+      <div class="kbox-top">
+        <div class="kbox-icon" style="background:var(--sand2)">⚙️</div>
+        <span class="kbox-num">Box 4</span>
+      </div>
+      <div class="kbox-body">
+        <div class="kbox-title">Technical SEO</div>
+        <div class="kbox-desc">Infrastructure-level. Set up once, monitor regularly. Different from on-site.</div>
+        <div class="kbox-items">
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Core Web Vitals (LCP &lt;2.5s · CLS · FID)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Crawlability · XML Sitemap · Robots.txt</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>301 Redirects · Broken links</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Schema markup · HTTPS · Mobile-friendly</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Index coverage (Google Search Console)</div>
+        </div>
+        <div class="kbox-footer">
+          <span class="kbox-status">Audit quarterly · monitor monthly</span>
+          <span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOX 5: Content Cluster & Topic Authority -->
+    <div class="kbox">
+      <div class="kbox-top">
+        <div class="kbox-icon" style="background:var(--mauve3)">🕸</div>
+        <span class="kbox-num">Box 5</span>
+      </div>
+      <div class="kbox-body">
+        <div class="kbox-title">Content Cluster &amp; Topic Authority</div>
+        <div class="kbox-desc">How to organize content so Google sees you as an authority on a topic — not just a blog.</div>
+        <div class="kbox-items">
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--mauve)"></span>1 Pillar page (broad topic, /software-dev)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--mauve)"></span>Multiple Cluster pages (sub-topics)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--mauve)"></span>Internal links: cluster → pillar (always)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--mauve)"></span>Same topic cluster = same URL folder (/finance/*)</div>
+        </div>
+        <div class="kbox-footer">
+          <span class="kbox-status">Structure first, then write</span>
+          <span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOX 6: Competitor Analysis -->
+    <div class="kbox">
+      <div class="kbox-top">
+        <div class="kbox-icon" style="background:var(--gold2)">🔍</div>
+        <span class="kbox-num">Box 6</span>
+      </div>
+      <div class="kbox-body">
+        <div class="kbox-title">Competitor Analysis</div>
+        <div class="kbox-desc">Understand what competitors rank for, their DR, and content gaps you can exploit.</div>
+        <div class="kbox-items">
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Competitor DR + backlink profile (Ahrefs)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Keywords they rank for that you don't</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Content gaps (topics not covered)</div>
+          <div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Their top pages by traffic</div>
+        </div>
+        <div class="kbox-footer">
+          <span class="kbox-status">Review quarterly</span>
+          <span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /box-grid -->
+
+  <!-- KEYWORD & CONTENT MAP TABLE -->
+  <div id="kw-map-section" class="sec-label" style="margin-top:28px">
+    Keyword &amp; Content Map · Table
+    <span style="font-weight:400;font-size:11px;color:var(--ink3)">Sample format — add your real keywords</span>
+  </div>
   <div class="table-wrap">
     <div class="table-toolbar">
-      <span style="font-size:11px;font-weight:700;color:var(--ink2);margin-right:2px">Filter by stage:</span>
+      <span style="font-size:11px;font-weight:700;color:var(--ink2);margin-right:2px">Filter:</span>
       <button class="filter-btn f-all active" onclick="filterTable('all',this)">All</button>
       <button class="filter-btn f-attract" onclick="filterTable('attract',this)">Attract</button>
       <button class="filter-btn f-engage" onclick="filterTable('engage',this)">Engage</button>
@@ -455,14 +603,14 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
       <thead>
         <tr>
           <th>Keyword <span class="th-info">?<span class="tip">The search term you want to rank for.</span></span></th>
-          <th>Funnel Stage <span class="th-info">?<span class="tip"><b>Attract</b> = TOFU, awareness<br><b>Engage</b> = MOFU, consideration<br><b>Convert</b> = BOFU, high intent<br><b>Authority</b> = trust, social proof</span></span></th>
-          <th onclick="sortTable(2)">Volume <span class="th-info">?<span class="tip">Monthly search volume. Higher = more traffic potential.</span></span> <span class="sort-ic">↕</span></th>
-          <th onclick="sortTable(3)">Difficulty <span class="th-info">?<span class="tip">KD 0–100 (Ahrefs).<br>0–30 Low · 31–60 Med · 61+ High</span></span> <span class="sort-ic">↕</span></th>
-          <th>Business Value <span class="th-info">?<span class="tip">Likelihood to generate qualified B2B leads.<br>●●● High · ●●○ Medium · ●○○ Low</span></span></th>
-          <th>Content Type <span class="th-info">?<span class="tip">Best format: Landing Page, Blog, Case Study, Service Page, Comparison, Guide...</span></span></th>
-          <th>Target Page <span class="th-info">?<span class="tip">The URL that should rank. One keyword → one page.</span></span></th>
-          <th>CTA <span class="th-info">?<span class="tip">Match the stage. Don't push Contact Us on Attract content.</span></span></th>
-          <th onclick="sortTable(8)">Priority <span class="th-info">?<span class="tip">P1 = high BV + winnable KD<br>P2 = next quarter<br>P3 = backlog</span></span> <span class="sort-ic">↕</span></th>
+          <th>Funnel Stage <span class="th-info">?<span class="tip"><b>Attract</b>=TOFU awareness<br><b>Engage</b>=MOFU consideration<br><b>Convert</b>=BOFU high intent<br><b>Authority</b>=trust, social proof</span></span></th>
+          <th onclick="sortTable(2)">Volume <span class="th-info">?<span class="tip">Monthly search volume. Higher = more traffic potential.</span></span> <span style="opacity:.4;font-size:9px">↕</span></th>
+          <th onclick="sortTable(3)">Difficulty <span class="th-info">?<span class="tip">KD 0–100 (Ahrefs).<br>0–30 Low · 31–60 Med · 61+ High</span></span> <span style="opacity:.4;font-size:9px">↕</span></th>
+          <th>Biz Value <span class="th-info">?<span class="tip">Likelihood to generate qualified B2B leads.<br>●●● High · ●●○ Medium · ●○○ Low</span></span></th>
+          <th>Content Type <span class="th-info">?<span class="tip">Best format based on intent and funnel stage.</span></span></th>
+          <th>Target Page <span class="th-info">?<span class="tip">URL that should rank. One keyword → one page.</span></span></th>
+          <th>CTA <span class="th-info">?<span class="tip">Match the stage. Don't push "Contact Us" on Attract.</span></span></th>
+          <th onclick="sortTable(8)">Priority <span class="th-info">?<span class="tip">P1=high BV+winnable KD<br>P2=next quarter<br>P3=backlog</span></span> <span style="opacity:.4;font-size:9px">↕</span></th>
           <th>Status</th>
         </tr>
       </thead>
@@ -475,154 +623,279 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
       <span class="leg"><span style="width:9px;height:9px;border-radius:2px;background:#3B6D11;display:inline-block"></span>0–30 Low</span>
       <span class="leg"><span style="width:9px;height:9px;border-radius:2px;background:#BA7517;display:inline-block"></span>31–60 Med</span>
       <span class="leg"><span style="width:9px;height:9px;border-radius:2px;background:#A32D2D;display:inline-block"></span>61+ High</span>
-      <span style="margin-left:8px;font-weight:700;color:var(--ink2)">Business Value:</span>
+      <span style="margin-left:8px;font-weight:700;color:var(--ink2)">Biz Value:</span>
       <span>●●● High &nbsp;●●○ Medium &nbsp;●○○ Low</span>
     </div>
   </div>
 
-  <!-- LINK BUILDING -->
-  <div class="sec-label" style="margin-top:28px">Link Building</div>
-  <div class="info-card">
-    <h3>What is Link Building?</h3>
-    <p>Getting other websites to link to your pages. Each backlink = a "vote of trust" that increases Domain Rating (DR) and helps pages rank higher. For B2B IT outsourcing, focus on industry directories, guest posts, and PR mentions.</p>
-  </div>
-  <table class="lb-table">
+  <!-- LINK BUILDING TABLE -->
+  <div id="lb-section" class="sec-label" style="margin-top:28px">Link Building · Tactics</div>
+  <table class="kpi-table">
     <thead>
-      <tr>
-        <th>Tactic</th>
-        <th>Type</th>
-        <th>Effort</th>
-        <th>Impact</th>
-        <th>Notes</th>
-        <th>Status</th>
-      </tr>
+      <tr><th>Tactic</th><th>Type</th><th>Effort</th><th>Impact</th><th>Notes</th><th>Status</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td style="font-weight:600;color:var(--ink)">Guest posting</td>
-        <td><span class="io-badge io-out">Outbound</span></td>
-        <td>High</td>
-        <td><span style="color:#3B6D11;font-weight:700">High</span></td>
-        <td style="color:var(--ink3)">Write for tech/IT blogs in target market</td>
-        <td><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;color:var(--ink)">Directory listings</td>
-        <td><span class="io-badge io-in">Inbound</span></td>
-        <td>Low</td>
-        <td><span style="color:#BA7517;font-weight:700">Medium</span></td>
-        <td style="color:var(--ink3)">Clutch, GoodFirms, Upwork profile</td>
-        <td><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;color:var(--ink)">PR / media mentions</td>
-        <td><span class="io-badge io-out">Outbound</span></td>
-        <td>High</td>
-        <td><span style="color:#3B6D11;font-weight:700">High</span></td>
-        <td style="color:var(--ink3)">Press releases, award submissions</td>
-        <td><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;color:var(--ink)">Broken link building</td>
-        <td><span class="io-badge io-out">Outbound</span></td>
-        <td>Medium</td>
-        <td><span style="color:#BA7517;font-weight:700">Medium</span></td>
-        <td style="color:var(--ink3)">Find broken links on target sites, offer replacement</td>
-        <td><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;color:var(--ink)">Case study co-publish</td>
-        <td><span class="io-badge io-in">Inbound</span></td>
-        <td>Medium</td>
-        <td><span style="color:#3B6D11;font-weight:700">High</span></td>
-        <td style="color:var(--ink3)">Client agrees to publish case study on their site</td>
-        <td><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td>
-      </tr>
+      <tr><td style="font-weight:600;color:var(--ink)">Guest posting</td><td><span class="io-badge io-out">Outbound</span></td><td style="color:var(--ink3)">High</td><td style="color:#3B6D11;font-weight:700">High</td><td style="color:var(--ink3);font-size:11px">Write for IT/tech blogs in target market</td><td><label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td></tr>
+      <tr><td style="font-weight:600;color:var(--ink)">Directory listings</td><td><span class="io-badge io-in">Inbound</span></td><td style="color:var(--ink3)">Low</td><td style="color:#BA7517;font-weight:700">Medium</td><td style="color:var(--ink3);font-size:11px">Clutch, GoodFirms, Techreviewer</td><td><label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td></tr>
+      <tr><td style="font-weight:600;color:var(--ink)">PR / Media mentions</td><td><span class="io-badge io-out">Outbound</span></td><td style="color:var(--ink3)">High</td><td style="color:#3B6D11;font-weight:700">High</td><td style="color:var(--ink3);font-size:11px">Press releases, award submissions</td><td><label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td></tr>
+      <tr><td style="font-weight:600;color:var(--ink)">Broken link building</td><td><span class="io-badge io-out">Outbound</span></td><td style="color:var(--ink3)">Medium</td><td style="color:#BA7517;font-weight:700">Medium</td><td style="color:var(--ink3);font-size:11px">Find broken links on target sites, offer replacement</td><td><label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td></tr>
+      <tr><td style="font-weight:600;color:var(--ink)">Case study co-publish</td><td><span class="io-badge io-in">Inbound</span></td><td style="color:var(--ink3)">Medium</td><td style="color:#3B6D11;font-weight:700">High</td><td style="color:var(--ink3);font-size:11px">Client publishes case study on their site with your link</td><td><label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px"><input type="checkbox" style="accent-color:var(--slate);width:13px;height:13px"> Planned</label></td></tr>
     </tbody>
   </table>
-</div>
 
-<!-- ══════════════════════════════════
+  <!-- FUNNEL FRAMEWORK — bottom, collapsible, shared reference -->
+  <div class="ffb">
+    <div class="ffb-hdr" onclick="toggleFFB('seo')">
+      <span class="ffb-hdr-l">Funnel Framework · Inbound Focus · Traffic → Lead → MQL <span style="font-weight:400;color:var(--ink3)"></span></span>
+      <span class="ffb-hdr-r" id="ffb-seo-tog">▾ Show reference</span>
+    </div>
+    <div id="ffb-seo-body" style="display:none">
+                  <div class="ffb-grid">
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">1</span><span style="color:var(--attract-t)">ICP &amp; Intent</span></div>
+          <div class="ffb-items">Pain point (Sales input)<br>Buying intent (BOFU)<br><span style="color:var(--ink3);font-style:italic">Gap: Define MQL criteria</span><br><span style="color:var(--ink3)">Owner: Sales + Digital</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">2</span><span style="color:var(--attract-t)">Demand Capture (SEO)</span></div>
+          <div class="ffb-items">BOFU keywords (service + industry)<br>Search intent mapping<br>Cluster by ICP<br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">3</span><span style="color:var(--attract-t)">Content Engine</span></div>
+          <div class="ffb-items">Case study<br>Blog (SEO support)<br>Lead magnet<br><span style="color:var(--ink3)">Output: Content assets</span><br><span style="color:var(--ink3)">Owner: Content Team</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">4</span><span style="color:var(--engage-t)">Authority</span></div>
+          <div class="ffb-items">Link building ([X] links/mo)<br>Guest posts / Paid posts<br>PR / Directory listing<br><span style="color:var(--ink3)">Goal: DR + Trust</span><br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">5</span><span style="color:var(--engage-t)">Website Foundation</span></div>
+          <div class="ffb-items">Site structure (IA)<br>UX/UI system<br>Page speed / Technical SEO<br>Tracking setup (GA4, events)<br><span style="color:var(--ink3)">Goal: Conversion foundation</span><br><span style="color:var(--ink3)">Owner: Web Dev</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">6</span><span style="color:var(--engage-t)">Service / Industry / Landing Page</span></div>
+          <div class="ffb-items"><b style="font-size:10px;color:var(--ink2)">6A</b> Service page — BOFU, clear CTA<br><b style="font-size:10px;color:var(--ink2)">6B</b> Industry page — ICP-specific<br><b style="font-size:10px;color:var(--ink2)">6C</b> Landing page — niche / campaign<br><span style="color:var(--ink3)">Owner: Cross-team</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">7</span><span style="color:var(--convert-t)">Conversion System</span></div>
+          <div class="ffb-items">CTA (value-driven)<br>Form (qualified fields)<br>Lead magnet<br>Optimize CVR<br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">8</span><span style="color:var(--convert-t)">Lead → Qualified → MQL</span></div>
+          <div class="ffb-items">Lead → Qualified (ICP fit)<br>→ MQL (fit + intent)<br><span style="color:var(--ink3);font-style:italic">Define: MQL criteria with Sales<br>Setup: tracking per source</span><br><span style="color:var(--ink3)">Owner: Sales + Marketing</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--authority-t)">9</span><span style="color:var(--authority-t)">Optimization &amp; Scale</span></div>
+          <div class="ffb-items">Keyword → Lead → MQL<br>Page → CVR<br>Channel → Quality<br>Scale winning clusters/pages<br><span style="color:var(--ink3)">Feedback loop: SEO &amp; Content</span><br><span style="color:var(--ink3)">→ Loop back to step 1</span></div>
+        </div>
+      </div>
+    </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">2</span><span style="color:var(--attract-t)">Demand Capture (SEO)</span></div>
+          <div class="ffb-items">BOFU keywords (service + industry)<br>Search intent mapping<br>Cluster by ICP<br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">3</span><span style="color:var(--attract-t)">Content Engine</span></div>
+          <div class="ffb-items">Case study<br>Blog (SEO support)<br>Lead magnet<br><span style="color:var(--ink3)">Output: Content assets</span><br><span style="color:var(--ink3)">Owner: Content Team</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">4</span><span style="color:var(--engage-t)">Authority</span></div>
+          <div class="ffb-items">Link building ([X] links/mo)<br>Guest posts / Paid posts<br>PR / Listing<br><span style="color:var(--ink3)">Goal: DR + Trust</span><br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">5</span><span style="color:var(--engage-t)">Website Foundation</span></div>
+          <div class="ffb-items">Site structure (IA)<br>UX/UI system<br>Page speed / Technical SEO<br>Tracking (GA4, events)<br><span style="color:var(--ink3)">Launch: [target date]</span><br><span style="color:var(--ink3)">Owner: Web Dev</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">6</span><span style="color:var(--engage-t)">Service / Industry / Landing Page</span></div>
+          <div class="ffb-items"><b style="font-size:10px;color:var(--ink2)">6A</b> Service page — BOFU, clear CTA<br><b style="font-size:10px;color:var(--ink2)">6B</b> Industry page — ICP-specific<br><b style="font-size:10px;color:var(--ink2)">6C</b> Landing page — niche / campaign<br><span style="color:var(--ink3)">Owner: Cross-team</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">7</span><span style="color:var(--convert-t)">Conversion System</span></div>
+          <div class="ffb-items">CTA (value-driven)<br>Form (qualified fields)<br>Lead magnet<br>Optimize CVR<br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">8</span><span style="color:var(--convert-t)">Lead → Qualified → MQL</span></div>
+          <div class="ffb-items">Lead → Qualified (ICP fit)<br>→ MQL (fit + intent)<br><span style="color:var(--ink3);font-style:italic">Define MQL criteria with Sales<br>Setup tracking per source</span><br><span style="color:var(--ink3)">Owner: Sales + Marketing</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--authority-t)">9</span><span style="color:var(--authority-t)">Optimization &amp; Scale</span></div>
+          <div class="ffb-items">Keyword → Lead → MQL<br>Page → CVR<br>Channel → Quality<br>Scale winning clusters/pages<br><span style="color:var(--ink3)">Feedback loop: SEO &amp; Content</span><br><span style="color:var(--ink3)">→ Loop back to step 1</span></div>
+        </div>
+      </div>
+    </div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">2</span><span style="color:var(--attract-t)">Demand Capture (SEO)</span></div><div class="ffb-items">BOFU keywords<br>Search intent mapping<br>Cluster by ICP</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">3</span><span style="color:var(--attract-t)">Content Engine</span></div><div class="ffb-items">Blog → Case Study → Service<br>SEO briefs<br>Co-authors (dev team)</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">4</span><span style="color:var(--engage-t)">Traffic to Site</span></div><div class="ffb-items">Organic search<br>Paid Ads (LinkedIn/Google)<br>Referral / Direct</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">5</span><span style="color:var(--engage-t)">Website Experience</span></div><div class="ffb-items">Service pages (13 core)<br>CTA clarity + trust signals<br>Mobile / speed optimized</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">6</span><span style="color:var(--engage-t)">CTA &amp; Form</span></div><div class="ffb-items">Contact form (short)<br>Clear CTA per page<br>GA4 event tracking</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">7</span><span style="color:var(--convert-t)">Lead Capture</span></div><div class="ffb-items">Form submit → CRM<br>Source tagged (GA4)<br>Notification to Sales</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">8</span><span style="color:var(--convert-t)">Lead Qualification</span></div><div class="ffb-items">Junk vs Qualified<br>MQL criteria (in progress)<br>Sales + Digital align</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--authority-t)">9</span><span style="color:var(--authority-t)">MQL → Pipeline</span></div><div class="ffb-items">MQL → SQL → Deal<br>CRM tracking<br>Revenue attribution</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panel-seo -->
+
+<!-- ══════════════════════════════
      TAB: PAID ADS
-══════════════════════════════════ -->
+══════════════════════════════ -->
 <div class="tab-panel" id="panel-ads">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
     <span class="io-badge io-out" style="font-size:11px;padding:3px 10px">Outbound</span>
-    <span style="font-size:12px;color:var(--ink3)">You push to audience. Pay per click or impression. Fast results, stops when budget stops.</span>
+    <span style="font-size:12px;color:var(--ink3)">You push to audience. Pay per click. Fast results, stops when budget stops.</span>
   </div>
-  <div class="info-card">
-    <h3>Google Ads — Search (High Intent)</h3>
-    <p>Target people actively searching for IT outsourcing services. Best for Convert stage keywords. Set up exact match + phrase match campaigns, negative keyword list, and track CPL by campaign.</p>
+  <div class="sec-label" style="margin-top:0">Paid Ads · Knowledge Boxes</div>
+  <div class="box-grid">
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--slate3)">📋</div><span class="kbox-num">Box 1</span></div><div class="kbox-body"><div class="kbox-title">Campaign Structure</div><div class="kbox-desc">How to organize ad campaigns for maximum control and clarity.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Campaign → Ad Group → Ad hierarchy</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Match types: Exact · Phrase · Broad</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Negative keyword list</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Budget allocation per campaign</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--attract-bg)">🎯</div><span class="kbox-num">Box 2</span></div><div class="kbox-body"><div class="kbox-title">Audience &amp; ICP Targeting</div><div class="kbox-desc">Define who to target on LinkedIn and Google to reach decision makers.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Job title targeting (CTO, VP Eng, IT Dir)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Industry + company size filter</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Geo targeting (AU / EU / US)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Remarketing audiences (site visitors)</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--sand2)">✍️</div><span class="kbox-num">Box 3</span></div><div class="kbox-body"><div class="kbox-title">Ad Copy &amp; Creative</div><div class="kbox-desc">Writing ads that get clicks from the right ICP at the right funnel stage.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Headline formula: Problem → Solution → CTA</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Pain-point based copy (BOFU)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Social proof in description</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>A/B test: headline vs CTA vs image</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--convert-bg)">💰</div><span class="kbox-num">Box 4</span></div><div class="kbox-body"><div class="kbox-title">CPL Tracking &amp; Budget</div><div class="kbox-desc">Track cost per lead by channel and optimize budget allocation.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>CPL = Total spend ÷ Leads generated</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Target: LinkedIn ≤$200 · Google ≤$150</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Track by campaign + ad group</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Weekly budget pacing check</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--engage-bg)">🔄</div><span class="kbox-num">Box 5</span></div><div class="kbox-body"><div class="kbox-title">Retargeting</div><div class="kbox-desc">Re-engage visitors who didn't convert. Lower CPL, higher intent.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Pixel setup (LinkedIn + Google)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Audience: visited service pages</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Message: case study / testimonial</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Frequency cap to avoid ad fatigue</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
   </div>
-  <div class="info-card">
-    <h3>LinkedIn Ads — ICP Targeting</h3>
-    <p>Target by job title (CTO, VP Engineering, IT Director), industry, and company size. Best for Engage and Convert stages. More expensive CPL but higher lead quality for B2B.</p>
-  </div>
-  <div class="coming" style="margin-top:8px">
-    <div class="coming-icon">📊</div>
-    <div class="coming-title">Campaign framework — coming soon</div>
-    <div class="coming-sub">Add campaign structure, budget allocation, CPL targets, and optimization checklist here.</div>
-  </div>
-</div>
+</div><!-- /panel-ads -->
 
-<!-- ══════════════════════════════════
+<!-- ══════════════════════════════
      TAB: WEBSITE / CRO
-══════════════════════════════════ -->
+══════════════════════════════ -->
 <div class="tab-panel" id="panel-website">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
     <span class="io-badge io-both" style="font-size:11px;padding:3px 10px">Both</span>
-    <span style="font-size:12px;color:var(--ink3)">Serves all channels — inbound traffic from SEO/Content AND outbound traffic from Ads.</span>
+    <span style="font-size:12px;color:var(--ink3)">Serves all channels — inbound traffic from SEO + outbound traffic from Ads.</span>
   </div>
-  <div class="info-card">
-    <h3>Lead Funnel / CVR Tracking</h3>
-    <p>Track conversion rate (CVR) by page. Identify where visitors drop off in the funnel. Key metric: sessions → form view → form submit → qualified lead. Target CVR ≥ 1% on service/landing pages.</p>
+  <div class="sec-label" style="margin-top:0">Website / CRO · Knowledge Boxes</div>
+  <div class="box-grid">
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--convert-bg)">📊</div><span class="kbox-num">Box 1</span></div><div class="kbox-body"><div class="kbox-title">Lead Funnel &amp; CVR Tracking</div><div class="kbox-desc">Track conversion rate by page. Find where visitors drop off.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Sessions → Form view → Submit → Lead</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>CVR target: ≥1% on service pages</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Track by page + traffic source</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>GA4 funnel exploration report</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--engage-bg)">🏗</div><span class="kbox-num">Box 2</span></div><div class="kbox-body"><div class="kbox-title">Landing Page Optimization</div><div class="kbox-desc">Make landing pages convert — structure, copy, and trust signals.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Above-fold: headline + CTA + social proof</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Pain → Solution → Proof → CTA structure</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Client logos · case study links · reviews</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>1 page = 1 goal = 1 CTA</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--sage2)">✅</div><span class="kbox-num">Box 3</span></div><div class="kbox-body"><div class="kbox-title">CRO Checklist (CTA, Form, Trust)</div><div class="kbox-desc">Systematic checklist to run on any page to improve conversion.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>CTA: visible above fold · action verb</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Form: ≤5 fields · clear labels · no CAPTCHA</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Trust: logo bar · review count · security badge</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Mobile: tap targets ≥44px · readable font</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--sand2)">⚡</div><span class="kbox-num">Box 4</span></div><div class="kbox-body"><div class="kbox-title">Page Speed &amp; Core Web Vitals</div><div class="kbox-desc">Google ranking factor + user experience. Slow = high bounce rate.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>LCP &lt;2.5s · CLS &lt;0.1 · FID &lt;100ms</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Image compression (WebP format)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Lazy loading · CDN setup</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Tools: PageSpeed Insights · GTMetrix</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--attract-bg)">🧪</div><span class="kbox-num">Box 5</span></div><div class="kbox-body"><div class="kbox-title">A/B Test Log</div><div class="kbox-desc">Track all tests — hypothesis, variant, result, and winner.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>One variable per test only</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Min sample: 100 conversions per variant</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Run ≥2 weeks to reduce noise</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Log: hypothesis · result · implement?</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
   </div>
-  <div class="info-card">
-    <h3>CRO — Conversion Rate Optimization</h3>
-    <p>Systematic improvement of pages to increase CVR without increasing traffic. Tactics: clear CTA placement, form shortening, page speed, trust signals (client logos, case study links), A/B testing headlines.</p>
-  </div>
-  <div class="coming" style="margin-top:8px">
-    <div class="coming-icon">🔧</div>
-    <div class="coming-title">CRO checklist &amp; A/B test log — coming soon</div>
-    <div class="coming-sub">Add landing page audit checklist, form optimization log, and A/B test results here.</div>
-  </div>
-</div>
 
-<!-- ══════════════════════════════════
+  <!-- FUNNEL FRAMEWORK — same as SEO tab -->
+  <div class="ffb">
+    <div class="ffb-hdr" onclick="toggleFFB('web')">
+      <span class="ffb-hdr-l">Funnel Framework · Inbound Focus · Traffic → Lead → MQL <span style="font-weight:400;color:var(--ink3)"></span></span>
+      <span class="ffb-hdr-r" id="ffb-web-tog">▾ Show reference</span>
+    </div>
+    <div id="ffb-web-body" style="display:none">
+                  <div class="ffb-grid">
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">1</span><span style="color:var(--attract-t)">ICP &amp; Intent</span></div>
+          <div class="ffb-items">Pain point (Sales input)<br>Buying intent (BOFU)<br><span style="color:var(--ink3);font-style:italic">Gap: Define MQL criteria</span><br><span style="color:var(--ink3)">Owner: Sales + Digital</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">2</span><span style="color:var(--attract-t)">Demand Capture (SEO)</span></div>
+          <div class="ffb-items">BOFU keywords (service + industry)<br>Search intent mapping<br>Cluster by ICP<br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">3</span><span style="color:var(--attract-t)">Content Engine</span></div>
+          <div class="ffb-items">Case study<br>Blog (SEO support)<br>Lead magnet<br><span style="color:var(--ink3)">Output: Content assets</span><br><span style="color:var(--ink3)">Owner: Content Team</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">4</span><span style="color:var(--engage-t)">Authority</span></div>
+          <div class="ffb-items">Link building ([X] links/mo)<br>Guest posts / Paid posts<br>PR / Directory listing<br><span style="color:var(--ink3)">Goal: DR + Trust</span><br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">5</span><span style="color:var(--engage-t)">Website Foundation</span></div>
+          <div class="ffb-items">Site structure (IA)<br>UX/UI system<br>Page speed / Technical SEO<br>Tracking setup (GA4, events)<br><span style="color:var(--ink3)">Goal: Conversion foundation</span><br><span style="color:var(--ink3)">Owner: Web Dev</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">6</span><span style="color:var(--engage-t)">Service / Industry / Landing Page</span></div>
+          <div class="ffb-items"><b style="font-size:10px;color:var(--ink2)">6A</b> Service page — BOFU, clear CTA<br><b style="font-size:10px;color:var(--ink2)">6B</b> Industry page — ICP-specific<br><b style="font-size:10px;color:var(--ink2)">6C</b> Landing page — niche / campaign<br><span style="color:var(--ink3)">Owner: Cross-team</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">7</span><span style="color:var(--convert-t)">Conversion System</span></div>
+          <div class="ffb-items">CTA (value-driven)<br>Form (qualified fields)<br>Lead magnet<br>Optimize CVR<br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">8</span><span style="color:var(--convert-t)">Lead → Qualified → MQL</span></div>
+          <div class="ffb-items">Lead → Qualified (ICP fit)<br>→ MQL (fit + intent)<br><span style="color:var(--ink3);font-style:italic">Define: MQL criteria with Sales<br>Setup: tracking per source</span><br><span style="color:var(--ink3)">Owner: Sales + Marketing</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--authority-t)">9</span><span style="color:var(--authority-t)">Optimization &amp; Scale</span></div>
+          <div class="ffb-items">Keyword → Lead → MQL<br>Page → CVR<br>Channel → Quality<br>Scale winning clusters/pages<br><span style="color:var(--ink3)">Feedback loop: SEO &amp; Content</span><br><span style="color:var(--ink3)">→ Loop back to step 1</span></div>
+        </div>
+      </div>
+    </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">2</span><span style="color:var(--attract-t)">Demand Capture (SEO)</span></div>
+          <div class="ffb-items">BOFU keywords (service + industry)<br>Search intent mapping<br>Cluster by ICP<br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">3</span><span style="color:var(--attract-t)">Content Engine</span></div>
+          <div class="ffb-items">Case study<br>Blog (SEO support)<br>Lead magnet<br><span style="color:var(--ink3)">Output: Content assets</span><br><span style="color:var(--ink3)">Owner: Content Team</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">4</span><span style="color:var(--engage-t)">Authority</span></div>
+          <div class="ffb-items">Link building ([X] links/mo)<br>Guest posts / Paid posts<br>PR / Listing<br><span style="color:var(--ink3)">Goal: DR + Trust</span><br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">5</span><span style="color:var(--engage-t)">Website Foundation</span></div>
+          <div class="ffb-items">Site structure (IA)<br>UX/UI system<br>Page speed / Technical SEO<br>Tracking (GA4, events)<br><span style="color:var(--ink3)">Launch: [target date]</span><br><span style="color:var(--ink3)">Owner: Web Dev</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">6</span><span style="color:var(--engage-t)">Service / Industry / Landing Page</span></div>
+          <div class="ffb-items"><b style="font-size:10px;color:var(--ink2)">6A</b> Service page — BOFU, clear CTA<br><b style="font-size:10px;color:var(--ink2)">6B</b> Industry page — ICP-specific<br><b style="font-size:10px;color:var(--ink2)">6C</b> Landing page — niche / campaign<br><span style="color:var(--ink3)">Owner: Cross-team</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">7</span><span style="color:var(--convert-t)">Conversion System</span></div>
+          <div class="ffb-items">CTA (value-driven)<br>Form (qualified fields)<br>Lead magnet<br>Optimize CVR<br><span style="color:var(--ink3)">Owner: Digital Lead</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">8</span><span style="color:var(--convert-t)">Lead → Qualified → MQL</span></div>
+          <div class="ffb-items">Lead → Qualified (ICP fit)<br>→ MQL (fit + intent)<br><span style="color:var(--ink3);font-style:italic">Define MQL criteria with Sales<br>Setup tracking per source</span><br><span style="color:var(--ink3)">Owner: Sales + Marketing</span></div>
+        </div>
+        <div class="ffb-step">
+          <div class="ffb-num"><span class="ffb-num-badge" style="background:var(--authority-t)">9</span><span style="color:var(--authority-t)">Optimization &amp; Scale</span></div>
+          <div class="ffb-items">Keyword → Lead → MQL<br>Page → CVR<br>Channel → Quality<br>Scale winning clusters/pages<br><span style="color:var(--ink3)">Feedback loop: SEO &amp; Content</span><br><span style="color:var(--ink3)">→ Loop back to step 1</span></div>
+        </div>
+      </div>
+    </div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">2</span><span style="color:var(--attract-t)">Demand Capture (SEO)</span></div><div class="ffb-items">BOFU keywords<br>Search intent mapping<br>Cluster by ICP</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--attract-t)">3</span><span style="color:var(--attract-t)">Content Engine</span></div><div class="ffb-items">Blog → Case Study → Service<br>SEO briefs<br>Co-authors (dev team)</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">4</span><span style="color:var(--engage-t)">Traffic to Site</span></div><div class="ffb-items">Organic search<br>Paid Ads (LinkedIn/Google)<br>Referral / Direct</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">5</span><span style="color:var(--engage-t)">Website Experience</span></div><div class="ffb-items">Service pages (13 core)<br>CTA clarity + trust signals<br>Mobile / speed optimized</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--engage-t)">6</span><span style="color:var(--engage-t)">CTA &amp; Form</span></div><div class="ffb-items">Contact form (short)<br>Clear CTA per page<br>GA4 event tracking</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">7</span><span style="color:var(--convert-t)">Lead Capture</span></div><div class="ffb-items">Form submit → CRM<br>Source tagged (GA4)<br>Notification to Sales</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--convert-t)">8</span><span style="color:var(--convert-t)">Lead Qualification</span></div><div class="ffb-items">Junk vs Qualified<br>MQL criteria (in progress)<br>Sales + Digital align</div></div>
+        <div class="ffb-step"><div class="ffb-num"><span class="ffb-num-badge" style="background:var(--authority-t)">9</span><span style="color:var(--authority-t)">MQL → Pipeline</span></div><div class="ffb-items">MQL → SQL → Deal<br>CRM tracking<br>Revenue attribution</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panel-website -->
+
+<!-- ══════════════════════════════
      TAB: CONTENT
-══════════════════════════════════ -->
+══════════════════════════════ -->
 <div class="tab-panel" id="panel-content">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
     <span class="io-badge io-in" style="font-size:11px;padding:3px 10px">Inbound</span>
-    <span style="font-size:12px;color:var(--ink3)">Pull strategy — educate and attract the right audience with valuable content.</span>
+    <span style="font-size:12px;color:var(--ink3)">Pull strategy — you define, Content team executes.</span>
   </div>
-  <div class="info-card">
-    <h3>Your role (Co-work)</h3>
-    <p>You own the content strategy and briefs — the Content team executes writing and design. Key output: SEO content briefs aligned to Keyword &amp; Content Map, case study framework, and editorial calendar.</p>
-  </div>
-  <div class="coming" style="margin-top:8px">
-    <div class="coming-icon">✍️</div>
-    <div class="coming-title">Content framework — coming soon</div>
-    <div class="coming-sub">Add editorial calendar, content brief template, and case study framework here.</div>
+  <div class="sec-label" style="margin-top:0">Content · Knowledge Boxes</div>
+  <div class="box-grid-2">
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--sage2)">📅</div><span class="kbox-num">Box 1</span></div><div class="kbox-body"><div class="kbox-title">Editorial Calendar</div><div class="kbox-desc">Plan content production aligned to keyword map and funnel stage.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Topic · keyword · funnel stage · due date</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Writer assigned · status · publish date</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>12 blog / mo minimum</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--attract-bg)">📝</div><span class="kbox-num">Box 2</span></div><div class="kbox-body"><div class="kbox-title">Content Brief Template</div><div class="kbox-desc">Standard brief to give Content team — ensures SEO and strategy alignment.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Target keyword + secondary keywords</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Search intent · funnel stage · ICP</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>H2 outline · word count · internal links</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--authority-bg)">🏆</div><span class="kbox-num">Box 3</span></div><div class="kbox-body"><div class="kbox-title">Case Study Framework</div><div class="kbox-desc">Structure for high-converting B2B case studies that build authority.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Client context + challenge</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Solution + technology used</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Measurable results + client quote</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--sand2)">📈</div><span class="kbox-num">Box 4</span></div><div class="kbox-body"><div class="kbox-title">Content Performance Tracking</div><div class="kbox-desc">Measure which content drives traffic, leads, and rankings.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Organic traffic per article (GA4)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Ranking position (GSC)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Leads attributed to content</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
+<!-- ══════════════════════════════
      TAB: SOCIAL / EVENT
-══════════════════════════════════ -->
+══════════════════════════════ -->
 <div class="tab-panel" id="panel-social">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
     <span class="io-badge io-out" style="font-size:11px;padding:3px 10px">Outbound</span>
-    <span style="font-size:12px;color:var(--ink3)">Push strategy — you initiate contact or distribute content to reach the audience.</span>
+    <span style="font-size:12px;color:var(--ink3)">Supporting role only — not a primary lead gen driver for B2B IT.</span>
   </div>
-  <div class="info-card">
-    <h3>Your role (Support)</h3>
-    <p>Not a primary lead gen driver for B2B IT outsourcing. Social is used for content distribution and brand signal. Webinars support lead gen when aligned with Convert or Authority stage content.</p>
-  </div>
-  <div class="coming" style="margin-top:8px">
-    <div class="coming-icon">📱</div>
-    <div class="coming-title">Distribution checklist — coming soon</div>
-    <div class="coming-sub">Add social distribution checklist and webinar playbook here.</div>
+  <div class="sec-label" style="margin-top:0">Social / Event · Knowledge Boxes</div>
+  <div class="box-grid-2">
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--outbound)">📢</div><span class="kbox-num">Box 1</span></div><div class="kbox-body"><div class="kbox-title">Distribution Checklist</div><div class="kbox-desc">Every time content is published — distribute across channels systematically.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>LinkedIn company post + personal post</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Internal Slack / email to team</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Repurpose: quote card + snippet</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--engage-bg)">🎤</div><span class="kbox-num">Box 2</span></div><div class="kbox-body"><div class="kbox-title">Webinar Playbook</div><div class="kbox-desc">Run webinars that generate leads — only when aligned to Convert stage.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Topic: ICP pain point (not product pitch)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Promotion: LinkedIn Ads + email</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Follow-up: recording + CTA within 24h</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
+    <div class="kbox"><div class="kbox-top"><div class="kbox-icon" style="background:var(--slate3)">💼</div><span class="kbox-num">Box 3</span></div><div class="kbox-body"><div class="kbox-title">LinkedIn Organic Strategy</div><div class="kbox-desc">Build personal brand and company page presence for B2B authority.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Company page: 3–4 posts / week</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Personal brand: thought leadership posts</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Engage on ICP comments + posts</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-link" style="cursor:default;opacity:.5">Google Drive ↗</span></div></div></div>
   </div>
 </div>
 
@@ -643,12 +916,20 @@ function switchTab(id,btn){
   document.getElementById('bc-current').textContent=btn.getAttribute('data-bc');
 }
 
-/* FUNNEL TOGGLE */
-var funnelOpen=false;
-function toggleFunnel(){
-  funnelOpen=!funnelOpen;
-  document.getElementById('funnel-body').style.display=funnelOpen?'block':'none';
-  document.getElementById('funnel-tog').textContent=funnelOpen?'▴ Hide':'▾ Show';
+/* FUNNEL STAGE REFERENCE toggle */
+var fsbOpen=false;
+function toggleFSB(){
+  fsbOpen=!fsbOpen;
+  document.getElementById('fsb-body').style.display=fsbOpen?'block':'none';
+  document.getElementById('fsb-tog').textContent=fsbOpen?'▴ Hide':'▾ Show';
+}
+
+/* FUNNEL FRAMEWORK (inbound) toggle — shared SEO + Website */
+var ffbState={seo:false,web:false};
+function toggleFFB(tab){
+  ffbState[tab]=!ffbState[tab];
+  document.getElementById('ffb-'+tab+'-body').style.display=ffbState[tab]?'block':'none';
+  document.getElementById('ffb-'+tab+'-tog').textContent=ffbState[tab]?'▴ Hide reference':'▾ Show reference';
 }
 
 /* KEYWORD TABLE */
@@ -687,7 +968,6 @@ function renderRows(){
   });
   document.getElementById('row-count').textContent=visible+' of '+DATA.length+' rows';
 }
-
 function toggleDone(i,cb){DATA[i].done=cb.checked;renderRows();}
 function filterTable(stage,btn){
   currentFilter=stage;
