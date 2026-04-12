@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Career Hub — Personal Development</title>
+<style>
+:root {
+  --sand:    #DCC7AA;
+  --mauve:   #C396A6;
+  --gold:    #D4A017;
+  --slate:   #8299CA;
+  --sage:    #ADC2A3;
+  --terra:   #C68463;
+  --sand2:   #E9DCCA;
+  --mauve2:  #D5B5C1;
+  --gold2:   #E1BD5D;
+  --slate2:  #A8B8DA;
+  --sage2:   #C5D4BF;
+  --terra2:  #D7A992;
+  --sand3:   #EDE3D5;
+  --bg:      #FBF9F6;
+  --bg2:     #F6F1EA;
+  --ink:     #2C2318;
+  --ink2:    #5C4D3C;
+  --ink3:    #8C7B6A;
+  --r:       12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* PASSWORD */
+#pw-overlay{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.pw-box{background:#fff;border:1px solid var(--sand);border-radius:18px;padding:48px 40px 40px;width:340px;text-align:center}
+.pw-logo{width:64px;height:52px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center}
+.pw-title{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-.02em}
+.pw-sub{font-size:12px;color:var(--ink3);margin-bottom:28px}
+.pw-label{display:block;font-size:11px;font-weight:700;color:var(--ink2);text-align:left;margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
+.pw-input{width:100%;border:1.5px solid var(--sand);border-radius:8px;padding:10px 14px;font-size:14px;font-family:Arial,sans-serif;color:var(--ink);outline:none;transition:border-color .15s;background:var(--bg)}
+.pw-input:focus{border-color:var(--terra)}
+.pw-btn{width:100%;margin-top:12px;background:var(--ink);color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;font-family:Arial,sans-serif;cursor:pointer;letter-spacing:.01em;transition:background .15s}
+.pw-btn:hover{background:var(--ink2)}
+.pw-err{display:none;margin-top:10px;font-size:12px;color:#a33;font-weight:600}
+.pw-note{margin-top:20px;font-size:11px;color:var(--ink3)}
+
+/* TOPBAR */
+.topbar{height:52px;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:10}
+.tb-left{display:flex;align-items:center;gap:10px}
+.tb-dot{width:9px;height:9px;border-radius:50%;background:var(--terra)}
+.tb-name{font-size:13px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.tb-sep{width:1px;height:16px;background:rgba(255,255,255,.15)}
+.tb-sub{font-size:11px;color:rgba(255,255,255,.4)}
+.tb-right{font-size:11px;color:rgba(255,255,255,.25)}
+
+/* HERO */
+.hero{background:var(--ink);padding:56px 40px 52px;position:relative;overflow:hidden}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(220,199,170,.1);border:1px solid rgba(220,199,170,.2);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--sand);letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
+.hero-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--sand2);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero h1{font-size:34px;font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:10px}
+.hero h1 em{font-style:normal;color:var(--sand)}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;max-width:420px;margin-bottom:36px}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap}
+.hpill{background:rgba(220,199,170,.08);border:1px solid rgba(220,199,170,.15);border-radius:8px;padding:8px 16px}
+.hpill-val{font-size:18px;font-weight:700;color:#fff}
+.hpill-label{font-size:10px;color:rgba(255,255,255,.35);margin-top:1px}
+
+/* PAGE */
+.page{padding:36px 40px 72px;max-width:960px}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px;margin-top:40px}
+.sec-label:first-child{margin-top:0}
+
+/* TRACK GRID */
+.track-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* TRACK CARD */
+.tcard{background:#fff;border:1px solid var(--sand2);border-radius:var(--r);overflow:hidden;text-decoration:none;display:block;transition:transform .16s,box-shadow .16s,border-color .16s;cursor:pointer}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(44,35,24,.09);border-color:var(--sand)}
+.tcard-banner{height:6px}
+.tcard-mm .tcard-banner{background:linear-gradient(90deg,var(--sage),var(--sage2))}
+.tcard-dm .tcard-banner{background:linear-gradient(90deg,var(--slate),var(--slate2))}
+.tcard-body{padding:24px 24px 20px}
+.tcard-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.tcard-mm .tcard-icon{background:var(--sage2)}
+.tcard-dm .tcard-icon{background:var(--slate2)}
+.tcard-label{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.tcard-mm .tcard-label{color:var(--sage)}
+.tcard-dm .tcard-label{color:var(--slate)}
+.tcard-title{font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.2;margin-bottom:8px}
+.tcard-desc{font-size:12px;color:var(--ink3);line-height:1.65;margin-bottom:20px}
+.tcard-footer{border-top:1px solid var(--sand3);padding-top:14px;display:flex;align-items:center;justify-content:space-between}
+.tcard-chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;letter-spacing:.02em}
+.chip-sage{background:var(--sage2);color:#2a4a22}
+.chip-slate{background:var(--slate2);color:#1e3060}
+.tcard-arrow{font-size:16px;color:var(--ink3)}
+
+/* QUICK STATS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:32px}
+.stat-box{background:#fff;border:1px solid var(--sand2);border-radius:10px;padding:14px 16px}
+.stat-val{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.stat-label{font-size:10px;color:var(--ink3);margin-top:2px}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--sand2);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--ink3)}
+.footer-dot{width:7px;height:7px;border-radius:50%;background:var(--terra);display:inline-block;margin-right:7px}
+
+@media(max-width:640px){
+  .topbar,.hero,.page,.footer{padding-left:20px;padding-right:20px}
+  .track-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<!-- Password gate -->
+<div id="pw-overlay">
+  <div class="pw-box">
+    <div class="pw-logo">
+    <svg width="72" height="58" viewBox="0 0 60 48" fill="none">
+      <rect x="0"  y="26" width="5" height="20" rx="1" fill="#1e7a8c"/>
+      <rect x="8"  y="16" width="5" height="30" rx="1" fill="#1e7a8c"/>
+      <rect x="16" y="4"  width="5" height="42" rx="1" fill="#15606e"/>
+      <polygon points="24,4 24,46 30,46 30,26 37,46 44,26 44,46 50,46 50,4 44,4 37,20 30,4" fill="#1a2830"/>
+    </svg>
+    </div>
+    <div class="pw-title">Career Hub</div>
+    <div class="pw-sub">Personal · Private Access</div>
+    <label class="pw-label" for="pw-in">Password</label>
+    <input class="pw-input" id="pw-in" type="password" placeholder="Enter password" autocomplete="off"/>
+    <button class="pw-btn" onclick="checkPw()">Enter →</button>
+    <div class="pw-err" id="pw-err">Incorrect password</div>
+    <div class="pw-note">Private use only</div>
+  </div>
+</div>
+<script>
+(function(){if(localStorage.getItem('ch_auth')==='1')document.getElementById('pw-overlay').style.display='none'})();
+document.getElementById('pw-in').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw()});
+function checkPw(){
+  var v=document.getElementById('pw-in').value;
+  if(v==='180689230889'){
+    localStorage.setItem('ch_auth','1');
+    document.getElementById('pw-overlay').style.display='none';
+  } else {
+    document.getElementById('pw-err').style.display='block';
+    document.getElementById('pw-in').value='';
+    document.getElementById('pw-in').focus();
+  }
+}
+</script>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="tb-left">
+    <svg width="30" height="24" viewBox="0 0 60 48" fill="none" style="flex-shrink:0">
+      <rect x="0"  y="26" width="5" height="20" rx="1" fill="#2a9aaa"/>
+      <rect x="8"  y="16" width="5" height="30" rx="1" fill="#2a9aaa"/>
+      <rect x="16" y="4"  width="5" height="42" rx="1" fill="#1e7d8c"/>
+      <polygon points="24,4 24,46 30,46 30,26 37,46 44,26 44,46 50,46 50,4 44,4 37,20 30,4" fill="#fff"/>
+    </svg>
+    <span class="tb-name">Career Hub</span>
+    <div class="tb-sep"></div>
+    <span class="tb-sub">Personal Development</span>
+  </div>
+  <span class="tb-right">Private · 2026</span>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag"><span class="hero-tag-dot"></span>2026 · Active</div>
+  <h1>My Career<br><em>Development Hub</em></h1>
+  <p class="hero-sub">Track your personal career development — stage by stage, skill by skill, goal by goal.</p>
+  <div class="hero-pills">
+    <div class="hpill"><div class="hpill-val">24M</div><div class="hpill-label">Roadmap</div></div>
+    <div class="hpill"><div class="hpill-val">2</div><div class="hpill-label">Career tracks</div></div>
+    <div class="hpill"><div class="hpill-val">8</div><div class="hpill-label">Stages</div></div>
+    <div class="hpill"><div class="hpill-val">6</div><div class="hpill-label">Capability layers</div></div>
+  </div>
+</div>
+
+<!-- Page -->
+<div class="page">
+  <div class="sec-label">Select your career track</div>
+
+  <div class="track-grid">
+
+    <!-- Track A: Marketing Manager -->
+    <a class="tcard tcard-mm" href="track-mm.html">
+      <div class="tcard-banner"></div>
+      <div class="tcard-body">
+        <div class="tcard-icon">📈</div>
+        <div class="tcard-label">Track A</div>
+        <div class="tcard-title">Marketing<br>Manager</div>
+        <div class="tcard-desc">Overall roadmap for Marketing Manager — strategy, operations, and team management.</div>
+        <div class="tcard-footer">
+          <div class="tcard-chips">
+            <span class="chip chip-sage">Roadmap</span>
+            <span class="chip chip-sage">Checklist</span>
+          </div>
+          <span class="tcard-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Track B: Digital Marketing Manager -->
+    <a class="tcard tcard-dm" href="track-dm.html">
+      <div class="tcard-banner"></div>
+      <div class="tcard-body">
+        <div class="tcard-icon">🚀</div>
+        <div class="tcard-label">Track B</div>
+        <div class="tcard-title">Digital Marketing<br>Manager</div>
+        <div class="tcard-desc">24-month roadmap for Digital Marketing Manager — 6 capability layers, from execution to strategy.</div>
+        <div class="tcard-footer">
+          <div class="tcard-chips">
+            <span class="chip chip-slate">24M Roadmap</span>
+            <span class="chip chip-slate">6 Layers</span>
+            <span class="chip chip-slate">Checklist</span>
+          </div>
+          <span class="tcard-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Quick stats -->
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-val" id="total-checked">0</div>
+      <div class="stat-label">Tasks completed</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="total-tasks">0</div>
+      <div class="stat-label">Total tasks</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="pct-done">0%</div>
+      <div class="stat-label">Overall progress</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">Q2</div>
+      <div class="stat-label">Current quarter</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div><span class="footer-dot"></span>Career Hub · Personal</div>
+  <span>Private · 2026</span>
+</div>
+
+<script>
+(function(){
+  var keys=Object.keys(localStorage).filter(function(k){return k.startsWith('ch_')});
+  var checked=keys.filter(function(k){return localStorage.getItem(k)==='1'}).length;
+  var total=keys.length;
+  document.getElementById('total-checked').textContent=checked;
+  document.getElementById('total-tasks').textContent=total||'—';
+  document.getElementById('pct-done').textContent=total?Math.round(checked/total*100)+'%':'—';
+})();
+</script>
+</body>
+</html>
