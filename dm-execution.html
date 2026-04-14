@@ -322,6 +322,8 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 .kpi-f-qtrly{background:var(--attract-bg);color:var(--attract-t)}
 .kpi-tool{font-size:10px;color:var(--ink3);line-height:1.6}
 .kpi-new{display:inline-block;font-size:9px;font-weight:700;padding:1px 5px;border-radius:6px;background:var(--attract-bg);color:var(--attract-t);margin-left:4px;vertical-align:middle}
+.kw-del-btn{border:none;background:none;color:var(--sand);font-size:13px;cursor:pointer;padding:2px 4px;border-radius:4px;font-family:Arial;line-height:1;display:block;margin:0 auto}
+.kw-del-btn:hover{background:#FCE8E8;color:#A32D2D}
 </style>
 </head>
 <body>
@@ -809,18 +811,17 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
     <span class="io-badge io-in" style="font-size:11px;padding:3px 10px">Inbound</span>
     <span style="font-size:12px;color:var(--ink3)">People search → find you organically. You do not pay per click.</span>
   </div>
-  <div class="sec-label" style="margin-top:0">SEO · Knowledge Boxes — click to expand</div>
+  <div class="sec-label" style="margin-top:0">SEO · Knowledge — click to expand</div>
   <div class="box-grid">
 
     <!-- BOX 1: Keyword & Content Map -->
     <div class="kbox" id="kbox-seo-1">
-      <div class="kbox-hdr" onclick="toggleBox('kbox-seo-1')">
+      <div class="kbox-hdr" onclick="window.location='seo-detail.html#kw-map'">
         <div class="kbox-hdr-left">
           <div class="kbox-icon" style="background:var(--terra2)">🗺</div>
           <div class="kbox-hdr-text">
-            <div class="kbox-num">Box 1</div>
-            <div class="kbox-title">Keyword &amp; Content Map</div>
-            <div class="kbox-preview">Keyword · Stage · Volume · Difficulty · CTA</div>
+                        <div class="kbox-title">Keyword &amp; Content Map</div>
+            <div class="kbox-preview">Keyword · TOFU/MOFU/BOFU · KD · URL · Timeline</div>
           </div>
         </div>
         <span class="kbox-toggle">▾</span>
@@ -831,26 +832,30 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
           <div class="kbox-table-toolbar">
             <span style="font-size:11px;font-weight:700;color:var(--ink2);margin-right:2px">Filter:</span>
             <button class="filter-btn f-all active" onclick="filterKW('all',this)">All</button>
-            <button class="filter-btn f-attract" onclick="filterKW('attract',this)">Attract</button>
-            <button class="filter-btn f-engage" onclick="filterKW('engage',this)">Engage</button>
-            <button class="filter-btn f-convert" onclick="filterKW('convert',this)">Convert</button>
+            <button class="filter-btn f-attract" onclick="filterKW('attract',this)">Attract · TOFU</button>
+            <button class="filter-btn f-engage" onclick="filterKW('engage',this)">Engage · MOFU</button>
+            <button class="filter-btn f-convert" onclick="filterKW('convert',this)">Convert · BOFU</button>
             <button class="filter-btn f-authority" onclick="filterKW('authority',this)">Authority</button>
             <span class="tb-count" id="kw-count"></span>
           </div>
           <div style="overflow-x:auto">
-          <table class="kw-table">
+          <table class="kw-table" style="table-layout:fixed;min-width:unset;width:100%">
+            <colgroup>
+              <col style="width:20%"><col style="width:14%"><col style="width:6%">
+              <col style="width:14%"><col style="width:8%"><col style="width:15%">
+              <col style="width:11%"><col style="width:9%"><col style="width:3%">
+            </colgroup>
             <thead>
               <tr>
-                <th>Keyword <span class="th-info">?<span class="tip">Search term to rank for. Be specific — broad keywords are harder and less valuable for B2B.</span></span></th>
-                <th>Funnel Stage <span class="th-info">?<span class="tip">Attract=TOFU awareness · Engage=MOFU consideration · Convert=BOFU high intent · Authority=trust/social proof</span></span></th>
-                <th>Volume <span class="th-info">?<span class="tip">Monthly search volume. Higher = more traffic potential, but usually harder to rank.</span></span></th>
-                <th>Difficulty <span class="th-info">?<span class="tip">KD 0–100 (Ahrefs). 0–30 Low · 31–60 Med · 61+ High</span></span></th>
-                <th>Biz Value <span class="th-info">?<span class="tip">Likelihood to generate qualified B2B leads. ●●● High · ●●○ Medium · ●○○ Low</span></span></th>
-                <th>Content Type <span class="th-info">?<span class="tip">Best format: Landing Page, Blog Article, Case Study, Service Page, Comparison, Guide...</span></span></th>
-                <th>Target Page <span class="th-info">?<span class="tip">URL that should rank. One keyword → one page (no cannibalization).</span></span></th>
-                <th>CTA <span class="th-info">?<span class="tip">Match the stage — don't push Contact Us on Attract content.</span></span></th>
-                <th>Priority <span class="th-info">?<span class="tip">P1=high BV + winnable KD · P2=next quarter · P3=backlog</span></span></th>
+                <th>Keyword</th>
+                <th>Stage</th>
+                <th>KD</th>
+                <th>Content type</th>
+                <th>Outline</th>
+                <th>Target URL</th>
+                <th>Timeline</th>
                 <th>Status</th>
+                <th></th>
               </tr>
             </thead>
             <tbody id="kw-tbody"></tbody>
@@ -858,12 +863,10 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
           </div>
           <button class="add-row-btn" onclick="addKWRow()">+ Add keyword</button>
           <div class="kbox-legend">
-            <span style="font-weight:700;color:var(--ink2)">Difficulty:</span>
+            <span style="font-weight:700;color:var(--ink2)">KD:</span>
             <span class="leg"><span style="width:8px;height:8px;border-radius:2px;background:#3B6D11;display:inline-block"></span>0–30 Low</span>
             <span class="leg"><span style="width:8px;height:8px;border-radius:2px;background:#BA7517;display:inline-block"></span>31–60 Med</span>
             <span class="leg"><span style="width:8px;height:8px;border-radius:2px;background:#A32D2D;display:inline-block"></span>61+ High</span>
-            <span style="margin-left:8px;font-weight:700;color:var(--ink2)">Biz Value:</span>
-            <span>●●● High &nbsp;●●○ Medium &nbsp;●○○ Low</span>
           </div>
         </div>
         <div class="kbox-footer"><span class="kbox-status">Sample data — replace with real keywords</span><span class="kbox-gdrive">Google Drive ↗</span></div>
@@ -872,12 +875,11 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 
     <!-- BOX 2: Link Building -->
     <div class="kbox" id="kbox-seo-2">
-      <div class="kbox-hdr" onclick="toggleBox('kbox-seo-2')">
+      <div class="kbox-hdr" onclick="window.location='seo-detail.html#link-building'">
         <div class="kbox-hdr-left">
           <div class="kbox-icon" style="background:var(--slate3)">🔗</div>
           <div class="kbox-hdr-text">
-            <div class="kbox-num">Box 2</div>
-            <div class="kbox-title">Link Building</div>
+                        <div class="kbox-title">Link Building</div>
             <div class="kbox-preview">Tactics · Inbound/Outbound · Effort · Impact</div>
           </div>
         </div>
@@ -903,12 +905,11 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 
     <!-- BOX 3: On-site Checklist -->
     <div class="kbox" id="kbox-seo-3">
-      <div class="kbox-hdr" onclick="toggleBox('kbox-seo-3')">
+      <div class="kbox-hdr" onclick="window.location='seo-detail.html#onsite'">
         <div class="kbox-hdr-left">
           <div class="kbox-icon" style="background:var(--sage2)">✅</div>
           <div class="kbox-hdr-text">
-            <div class="kbox-num">Box 3</div>
-            <div class="kbox-title">On-site Checklist</div>
+                        <div class="kbox-title">On-site Checklist</div>
             <div class="kbox-preview">Run per page — title, H1, keywords, CTA, links</div>
           </div>
         </div>
@@ -932,12 +933,11 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 
     <!-- BOX 4: Technical SEO -->
     <div class="kbox" id="kbox-seo-4">
-      <div class="kbox-hdr" onclick="toggleBox('kbox-seo-4')">
+      <div class="kbox-hdr" onclick="window.location='seo-detail.html#technical'">
         <div class="kbox-hdr-left">
           <div class="kbox-icon" style="background:var(--sand2)">⚙️</div>
           <div class="kbox-hdr-text">
-            <div class="kbox-num">Box 4</div>
-            <div class="kbox-title">Technical SEO</div>
+                        <div class="kbox-title">Technical SEO</div>
             <div class="kbox-preview">Infrastructure · Core Web Vitals · Crawlability</div>
           </div>
         </div>
@@ -960,12 +960,11 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 
     <!-- BOX 5: Content Cluster -->
     <div class="kbox" id="kbox-seo-5">
-      <div class="kbox-hdr" onclick="toggleBox('kbox-seo-5')">
+      <div class="kbox-hdr" onclick="window.location='seo-detail.html#cluster'">
         <div class="kbox-hdr-left">
           <div class="kbox-icon" style="background:var(--mauve3)">🕸</div>
           <div class="kbox-hdr-text">
-            <div class="kbox-num">Box 5</div>
-            <div class="kbox-title">Content Cluster &amp; Topic Authority</div>
+                        <div class="kbox-title">Content Cluster &amp; Topic Authority</div>
             <div class="kbox-preview">Pillar page → Cluster pages → Internal links</div>
           </div>
         </div>
@@ -986,12 +985,11 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 
     <!-- BOX 6: Competitor Analysis -->
     <div class="kbox" id="kbox-seo-6">
-      <div class="kbox-hdr" onclick="toggleBox('kbox-seo-6')">
+      <div class="kbox-hdr" onclick="window.location='seo-detail.html#competitor'">
         <div class="kbox-hdr-left">
           <div class="kbox-icon" style="background:var(--gold2)">🔍</div>
           <div class="kbox-hdr-text">
-            <div class="kbox-num">Box 6</div>
-            <div class="kbox-title">Competitor Analysis</div>
+                        <div class="kbox-title">Competitor Analysis</div>
             <div class="kbox-preview">DR · Keyword gaps · Top pages · Backlinks</div>
           </div>
         </div>
@@ -1037,49 +1035,49 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-
 <!-- ══ PAID ADS ══ -->
 <div class="tab-panel" id="panel-ads">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px"><span class="io-badge io-out" style="font-size:11px;padding:3px 10px">Outbound</span><span style="font-size:12px;color:var(--ink3)">You push to audience. Pay per click. Fast results, stops when budget stops.</span></div>
-  <div class="sec-label" style="margin-top:0">Paid Ads · Knowledge Boxes — click to expand</div>
+  <div class="sec-label" style="margin-top:0">Paid Ads · Knowledge — click to expand</div>
   <div class="box-grid">
-    <div class="kbox" id="kbox-ads-1"><div class="kbox-hdr" onclick="toggleBox('kbox-ads-1')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--slate3)">📋</div><div class="kbox-hdr-text"><div class="kbox-num">Box 1</div><div class="kbox-title">Campaign Structure</div><div class="kbox-preview">Campaign → Ad Group → Ad · Match types</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">How to organize ad campaigns for maximum control and clarity. Structure determines how budget flows and how results are measured.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Campaign → Ad Group → Ad (3-tier hierarchy)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Match types: Exact (best) · Phrase · Broad (risky)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Negative keyword list — prevent irrelevant clicks</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Separate campaigns by: funnel stage · service · geo</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Budget allocation: more to Convert stage campaigns</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-ads-2"><div class="kbox-hdr" onclick="toggleBox('kbox-ads-2')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--attract-bg)">🎯</div><div class="kbox-hdr-text"><div class="kbox-num">Box 2</div><div class="kbox-title">Audience &amp; ICP Targeting</div><div class="kbox-preview">Job title · Industry · Company size · Geo</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Define who to target on LinkedIn and Google to reach B2B decision makers with buying intent.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Job title targeting: CTO, VP Engineering, IT Director</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Industry + company size filter (B2B segments)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Geo targeting: define target markets (AU / EU / US)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Remarketing audiences: site visitors by page visited</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-ads-3"><div class="kbox-hdr" onclick="toggleBox('kbox-ads-3')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--sand2)">✍️</div><div class="kbox-hdr-text"><div class="kbox-num">Box 3</div><div class="kbox-title">Ad Copy &amp; Creative</div><div class="kbox-preview">Headline formula · Pain-point copy · A/B test</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Write ads that attract clicks from the right ICP at the right funnel stage. Match message to stage.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Headline: Problem → Solution → CTA formula</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Pain-point copy for BOFU · educational for MOFU</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Social proof in description (clients, results)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>A/B test: headline vs CTA vs image (one variable)</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-ads-4"><div class="kbox-hdr" onclick="toggleBox('kbox-ads-4')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--convert-bg)">💰</div><div class="kbox-hdr-text"><div class="kbox-num">Box 4</div><div class="kbox-title">CPL Tracking &amp; Budget</div><div class="kbox-preview">CPL formula · Target · Weekly pacing</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Track cost per lead by channel and optimize budget allocation toward best-performing campaigns.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>CPL = Total spend ÷ Leads generated</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Set CPL target per channel (LinkedIn vs Google)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Track by campaign + ad group (not just total)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Weekly budget pacing check — pause overspend</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-ads-5"><div class="kbox-hdr" onclick="toggleBox('kbox-ads-5')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--engage-bg)">🔄</div><div class="kbox-hdr-text"><div class="kbox-num">Box 5</div><div class="kbox-title">Retargeting</div><div class="kbox-preview">Pixel setup · Audience segments · Frequency cap</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Re-engage visitors who didn't convert. Lower CPL than cold audiences, higher intent signals.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Pixel setup: LinkedIn Insight Tag + Google Tag</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Audience: visited service pages (high intent)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Message: case study / testimonial / social proof</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Frequency cap: max 5–7 impressions / week / user</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-ads-1"><div class="kbox-hdr" onclick="window.location='ads-detail.html#campaign'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--slate3)">📋</div><div class="kbox-hdr-text"><div class="kbox-title">Campaign Structure</div><div class="kbox-preview">Campaign → Ad Group → Ad · Match types</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">How to organize ad campaigns for maximum control and clarity. Structure determines how budget flows and how results are measured.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Campaign → Ad Group → Ad (3-tier hierarchy)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Match types: Exact (best) · Phrase · Broad (risky)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Negative keyword list — prevent irrelevant clicks</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Separate campaigns by: funnel stage · service · geo</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Budget allocation: more to Convert stage campaigns</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-ads-2"><div class="kbox-hdr" onclick="window.location='ads-detail.html#audience'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--attract-bg)">🎯</div><div class="kbox-hdr-text"><div class="kbox-title">Audience &amp; ICP Targeting</div><div class="kbox-preview">Job title · Industry · Company size · Geo</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Define who to target on LinkedIn and Google to reach B2B decision makers with buying intent.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Job title targeting: CTO, VP Engineering, IT Director</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Industry + company size filter (B2B segments)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Geo targeting: define target markets (AU / EU / US)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Remarketing audiences: site visitors by page visited</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-ads-3"><div class="kbox-hdr" onclick="window.location='ads-detail.html#ad-copy'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--sand2)">✍️</div><div class="kbox-hdr-text"><div class="kbox-title">Ad Copy &amp; Creative</div><div class="kbox-preview">Headline formula · Pain-point copy · A/B test</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Write ads that attract clicks from the right ICP at the right funnel stage. Match message to stage.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Headline: Problem → Solution → CTA formula</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Pain-point copy for BOFU · educational for MOFU</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Social proof in description (clients, results)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>A/B test: headline vs CTA vs image (one variable)</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-ads-4"><div class="kbox-hdr" onclick="window.location='ads-detail.html#cpl'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--convert-bg)">💰</div><div class="kbox-hdr-text"><div class="kbox-title">CPL Tracking &amp; Budget</div><div class="kbox-preview">CPL formula · Target · Weekly pacing</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Track cost per lead by channel and optimize budget allocation toward best-performing campaigns.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>CPL = Total spend ÷ Leads generated</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Set CPL target per channel (LinkedIn vs Google)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Track by campaign + ad group (not just total)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--terra)"></span>Weekly budget pacing check — pause overspend</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-ads-5"><div class="kbox-hdr" onclick="window.location='ads-detail.html#retargeting'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--engage-bg)">🔄</div><div class="kbox-hdr-text"><div class="kbox-title">Retargeting</div><div class="kbox-preview">Pixel setup · Audience segments · Frequency cap</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Re-engage visitors who didn't convert. Lower CPL than cold audiences, higher intent signals.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Pixel setup: LinkedIn Insight Tag + Google Tag</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Audience: visited service pages (high intent)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Message: case study / testimonial / social proof</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Frequency cap: max 5–7 impressions / week / user</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
   </div>
 </div><!-- /panel-ads -->
 
 <!-- ══ WEBSITE / CRO ══ -->
 <div class="tab-panel" id="panel-website">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px"><span class="io-badge io-both" style="font-size:11px;padding:3px 10px">Both</span><span style="font-size:12px;color:var(--ink3)">Serves all channels — inbound from SEO + outbound from Ads.</span></div>
-  <div class="sec-label" style="margin-top:0">Website / CRO · Knowledge Boxes — click to expand</div>
+  <div class="sec-label" style="margin-top:0">Website / CRO · Knowledge — click to expand</div>
   <div class="box-grid">
-    <div class="kbox" id="kbox-web-1"><div class="kbox-hdr" onclick="toggleBox('kbox-web-1')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--convert-bg)">📊</div><div class="kbox-hdr-text"><div class="kbox-num">Box 1</div><div class="kbox-title">Lead Funnel &amp; CVR Tracking</div><div class="kbox-preview">Sessions → Form view → Submit → Lead</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Track conversion rate by page. Find where visitors drop off. CVR = leads ÷ sessions × 100.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Track: Sessions → Form view → Form submit → Lead</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>CVR target: ≥ [X]% on service pages</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Break down CVR by page + traffic source</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>GA4 Funnel Exploration report</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-web-2"><div class="kbox-hdr" onclick="toggleBox('kbox-web-2')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--engage-bg)">🏗</div><div class="kbox-hdr-text"><div class="kbox-num">Box 2</div><div class="kbox-title">Landing Page Optimization</div><div class="kbox-preview">Above-fold · Pain→Solution→Proof→CTA · Trust</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Make landing pages convert — structure, copy, and trust signals. 1 page = 1 goal = 1 CTA.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Above fold: headline + CTA + social proof visible</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Structure: Pain → Solution → Proof → CTA</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Trust: client logos · case study links · review count</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>One page = one goal = one primary CTA</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-web-3"><div class="kbox-hdr" onclick="toggleBox('kbox-web-3')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--sage2)">✅</div><div class="kbox-hdr-text"><div class="kbox-num">Box 3</div><div class="kbox-title">CRO Checklist</div><div class="kbox-preview">CTA · Form · Trust · Mobile</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Systematic checklist to run on any page to improve conversion rate. Check before and after every redesign.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>CTA: visible above fold · action verb · contrast color</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Form: ≤ 5 fields · clear labels · no CAPTCHA on first visit</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Trust: logo bar · review count · security badge</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Mobile: tap targets ≥ 44px · readable font size ≥ 16px</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Load time &lt; 3s · no layout shift on load</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-web-4"><div class="kbox-hdr" onclick="toggleBox('kbox-web-4')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--sand2)">⚡</div><div class="kbox-hdr-text"><div class="kbox-num">Box 4</div><div class="kbox-title">Page Speed &amp; Core Web Vitals</div><div class="kbox-preview">LCP · CLS · FID · Image compression · CDN</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Google ranking factor + user experience. Slow pages = high bounce rate = fewer leads.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>LCP &lt; 2.5s · CLS &lt; 0.1 · FID &lt; 100ms</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Image: compress to WebP · lazy loading</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>CDN setup · minify CSS/JS · remove unused scripts</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Tools: PageSpeed Insights · GTMetrix · Chrome DevTools</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-web-5"><div class="kbox-hdr" onclick="toggleBox('kbox-web-5')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--attract-bg)">🧪</div><div class="kbox-hdr-text"><div class="kbox-num">Box 5</div><div class="kbox-title">A/B Test Log</div><div class="kbox-preview">Hypothesis · Variant · Result · Winner</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Track all tests systematically. One variable per test. Need statistical significance before declaring winner.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>One variable per test only (headline OR CTA OR image)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Min sample: 100 conversions per variant</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Run minimum 2 weeks to reduce noise</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Log: hypothesis · result · implement?</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-web-1"><div class="kbox-hdr" onclick="window.location='website-detail.html#cvr'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--convert-bg)">📊</div><div class="kbox-hdr-text"><div class="kbox-title">Lead Funnel &amp; CVR Tracking</div><div class="kbox-preview">Sessions → Form view → Submit → Lead</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Track conversion rate by page. Find where visitors drop off. CVR = leads ÷ sessions × 100.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Track: Sessions → Form view → Form submit → Lead</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>CVR target: ≥ [X]% on service pages</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Break down CVR by page + traffic source</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>GA4 Funnel Exploration report</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-web-2"><div class="kbox-hdr" onclick="window.location='website-detail.html#landing-page'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--engage-bg)">🏗</div><div class="kbox-hdr-text"><div class="kbox-title">Landing Page Optimization</div><div class="kbox-preview">Above-fold · Pain→Solution→Proof→CTA · Trust</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Make landing pages convert — structure, copy, and trust signals. 1 page = 1 goal = 1 CTA.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Above fold: headline + CTA + social proof visible</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Structure: Pain → Solution → Proof → CTA</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>Trust: client logos · case study links · review count</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--gold)"></span>One page = one goal = one primary CTA</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-web-3"><div class="kbox-hdr" onclick="window.location='website-detail.html#cro'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--sage2)">✅</div><div class="kbox-hdr-text"><div class="kbox-title">CRO Checklist</div><div class="kbox-preview">CTA · Form · Trust · Mobile</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Systematic checklist to run on any page to improve conversion rate. Check before and after every redesign.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>CTA: visible above fold · action verb · contrast color</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Form: ≤ 5 fields · clear labels · no CAPTCHA on first visit</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Trust: logo bar · review count · security badge</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Mobile: tap targets ≥ 44px · readable font size ≥ 16px</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Load time &lt; 3s · no layout shift on load</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-web-4"><div class="kbox-hdr" onclick="window.location='website-detail.html#page-speed'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--sand2)">⚡</div><div class="kbox-hdr-text"><div class="kbox-title">Page Speed &amp; Core Web Vitals</div><div class="kbox-preview">LCP · CLS · FID · Image compression · CDN</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Google ranking factor + user experience. Slow pages = high bounce rate = fewer leads.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>LCP &lt; 2.5s · CLS &lt; 0.1 · FID &lt; 100ms</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Image: compress to WebP · lazy loading</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>CDN setup · minify CSS/JS · remove unused scripts</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sand)"></span>Tools: PageSpeed Insights · GTMetrix · Chrome DevTools</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-web-5"><div class="kbox-hdr" onclick="window.location='website-detail.html#ab-test'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--attract-bg)">🧪</div><div class="kbox-hdr-text"><div class="kbox-title">A/B Test Log</div><div class="kbox-preview">Hypothesis · Variant · Result · Winner</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Track all tests systematically. One variable per test. Need statistical significance before declaring winner.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>One variable per test only (headline OR CTA OR image)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Min sample: 100 conversions per variant</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Run minimum 2 weeks to reduce noise</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Log: hypothesis · result · implement?</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
   </div>
 </div><!-- /panel-website -->
 
 <!-- ══ CONTENT ══ -->
 <div class="tab-panel" id="panel-content">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px"><span class="io-badge io-in" style="font-size:11px;padding:3px 10px">Inbound</span><span style="font-size:12px;color:var(--ink3)">Pull strategy — you define strategy, Content team executes.</span></div>
-  <div class="sec-label" style="margin-top:0">Content · Knowledge Boxes — click to expand</div>
+  <div class="sec-label" style="margin-top:0">Content · Knowledge — click to expand</div>
   <div class="box-grid-2">
-    <div class="kbox" id="kbox-cnt-1"><div class="kbox-hdr" onclick="toggleBox('kbox-cnt-1')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--sage2)">📅</div><div class="kbox-hdr-text"><div class="kbox-num">Box 1</div><div class="kbox-title">Editorial Calendar</div><div class="kbox-preview">Topic · Keyword · Stage · Due date · Status</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Plan content production aligned to keyword map and funnel stage. Ensures consistent output and strategic alignment.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Topic · target keyword · funnel stage · due date</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Writer assigned · status · publish date</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Target: [X] articles / mo minimum</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>All topics must map to a keyword in the Content Map</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-cnt-2"><div class="kbox-hdr" onclick="toggleBox('kbox-cnt-2')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--attract-bg)">📝</div><div class="kbox-hdr-text"><div class="kbox-num">Box 2</div><div class="kbox-title">Content Brief Template</div><div class="kbox-preview">Keyword · Intent · ICP · H2 outline · Word count</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Standard brief to give Content team — ensures SEO and strategy alignment before writing starts.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Target keyword + secondary keywords</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Search intent · funnel stage · target ICP</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>H2 outline · required word count · tone</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Internal links to add · CTA to use</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-cnt-3"><div class="kbox-hdr" onclick="toggleBox('kbox-cnt-3')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--authority-bg)">🏆</div><div class="kbox-hdr-text"><div class="kbox-num">Box 3</div><div class="kbox-title">Case Study Framework</div><div class="kbox-preview">Challenge → Solution → Results → Quote</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Structure for high-converting B2B case studies that build authority and support Convert stage content.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Client context + challenge (relatable pain point)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Solution + technology used (your service)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Measurable results (numbers, %, time saved)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Client quote + company details</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-cnt-4"><div class="kbox-hdr" onclick="toggleBox('kbox-cnt-4')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--sand2)">📈</div><div class="kbox-hdr-text"><div class="kbox-num">Box 4</div><div class="kbox-title">Content Performance Tracking</div><div class="kbox-preview">Traffic · Ranking · Leads attributed</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Measure which content drives traffic, rankings, and leads. Cut what doesn't work — scale what does.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Organic traffic per article (GA4)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Ranking position per keyword (Google Search Console)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Leads attributed to content (CRM source tagging)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Review monthly — update or consolidate underperformers</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-cnt-1"><div class="kbox-hdr" onclick="window.location='content-detail.html#editorial'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--sage2)">📅</div><div class="kbox-hdr-text"><div class="kbox-title">Editorial Calendar</div><div class="kbox-preview">Topic · Keyword · Stage · Due date · Status</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Plan content production aligned to keyword map and funnel stage. Ensures consistent output and strategic alignment.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Topic · target keyword · funnel stage · due date</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Writer assigned · status · publish date</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Target: [X] articles / mo minimum</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>All topics must map to a keyword in the Content Map</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-cnt-2"><div class="kbox-hdr" onclick="window.location='content-detail.html#brief'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--attract-bg)">📝</div><div class="kbox-hdr-text"><div class="kbox-title">Content Brief Template</div><div class="kbox-preview">Keyword · Intent · ICP · H2 outline · Word count</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Standard brief to give Content team — ensures SEO and strategy alignment before writing starts.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Target keyword + secondary keywords</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Search intent · funnel stage · target ICP</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>H2 outline · required word count · tone</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Internal links to add · CTA to use</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-cnt-3"><div class="kbox-hdr" onclick="window.location='content-detail.html#case-study'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--authority-bg)">🏆</div><div class="kbox-hdr-text"><div class="kbox-title">Case Study Framework</div><div class="kbox-preview">Challenge → Solution → Results → Quote</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Structure for high-converting B2B case studies that build authority and support Convert stage content.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Client context + challenge (relatable pain point)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Solution + technology used (your service)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Measurable results (numbers, %, time saved)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Client quote + company details</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-cnt-4"><div class="kbox-hdr" onclick="window.location='content-detail.html#performance'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--sand2)">📈</div><div class="kbox-hdr-text"><div class="kbox-title">Content Performance Tracking</div><div class="kbox-preview">Traffic · Ranking · Leads attributed</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Measure which content drives traffic, rankings, and leads. Cut what doesn't work — scale what does.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Organic traffic per article (GA4)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Ranking position per keyword (Google Search Console)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Leads attributed to content (CRM source tagging)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--sage)"></span>Review monthly — update or consolidate underperformers</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
   </div>
 </div><!-- /panel-content -->
 
 <!-- ══ SOCIAL / EVENT ══ -->
 <div class="tab-panel" id="panel-social">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px"><span class="io-badge io-out" style="font-size:11px;padding:3px 10px">Outbound</span><span style="font-size:12px;color:var(--ink3)">Supporting role only — not a primary lead gen driver for B2B IT.</span></div>
-  <div class="sec-label" style="margin-top:0">Social / Event · Knowledge Boxes — click to expand</div>
+  <div class="sec-label" style="margin-top:0">Social / Event · Knowledge — click to expand</div>
   <div class="box-grid-2">
-    <div class="kbox" id="kbox-soc-1"><div class="kbox-hdr" onclick="toggleBox('kbox-soc-1')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--outbound)">📢</div><div class="kbox-hdr-text"><div class="kbox-num">Box 1</div><div class="kbox-title">Distribution Checklist</div><div class="kbox-preview">LinkedIn · Slack · Repurpose</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Every time content is published — distribute across channels systematically. Don't publish and forget.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>LinkedIn company post + personal post</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Internal team notification (Slack / email)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Repurpose: quote card + key stat snippet</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Pin best performing content on company page</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-soc-2"><div class="kbox-hdr" onclick="toggleBox('kbox-soc-2')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--engage-bg)">🎤</div><div class="kbox-hdr-text"><div class="kbox-num">Box 2</div><div class="kbox-title">Webinar Playbook</div><div class="kbox-preview">Topic · Promotion · Follow-up CTA</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Run webinars that generate leads — only when aligned to Convert stage. Topic must address ICP pain point, not product pitch.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Topic: ICP pain point (not product pitch)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Promotion: LinkedIn Ads + email list</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>During: collect questions → qualify leads</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Follow-up: recording + CTA email within 24h</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
-    <div class="kbox" id="kbox-soc-3"><div class="kbox-hdr" onclick="toggleBox('kbox-soc-3')"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--slate3)">💼</div><div class="kbox-hdr-text"><div class="kbox-num">Box 3</div><div class="kbox-title">LinkedIn Organic Strategy</div><div class="kbox-preview">Company page · Personal brand · Engagement</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Build personal brand and company page presence for B2B authority. Organic is slow — focus on consistency over volume.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Company page: [X] posts / week (consistent)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Personal brand: thought leadership posts from leaders</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Engage on ICP comments + posts (not just post)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Share case studies + results (Authority content)</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-soc-1"><div class="kbox-hdr" onclick="window.location='social-detail.html#distribution'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--outbound)">📢</div><div class="kbox-hdr-text"><div class="kbox-title">Distribution Checklist</div><div class="kbox-preview">LinkedIn · Slack · Repurpose</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Every time content is published — distribute across channels systematically. Don't publish and forget.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>LinkedIn company post + personal post</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Internal team notification (Slack / email)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Repurpose: quote card + key stat snippet</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Pin best performing content on company page</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-soc-2"><div class="kbox-hdr" onclick="window.location='social-detail.html#webinar'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--engage-bg)">🎤</div><div class="kbox-hdr-text"><div class="kbox-title">Webinar Playbook</div><div class="kbox-preview">Topic · Promotion · Follow-up CTA</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Run webinars that generate leads — only when aligned to Convert stage. Topic must address ICP pain point, not product pitch.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Topic: ICP pain point (not product pitch)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Promotion: LinkedIn Ads + email list</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>During: collect questions → qualify leads</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Follow-up: recording + CTA email within 24h</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
+    <div class="kbox" id="kbox-soc-3"><div class="kbox-hdr" onclick="window.location='social-detail.html#linkedin'"><div class="kbox-hdr-left"><div class="kbox-icon" style="background:var(--slate3)">💼</div><div class="kbox-hdr-text"><div class="kbox-title">LinkedIn Organic Strategy</div><div class="kbox-preview">Company page · Personal brand · Engagement</div></div></div><span class="kbox-toggle">▾</span></div><div class="kbox-body"><div class="kbox-desc">Build personal brand and company page presence for B2B authority. Organic is slow — focus on consistency over volume.</div><div class="kbox-items"><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Company page: [X] posts / week (consistent)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Personal brand: thought leadership posts from leaders</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Engage on ICP comments + posts (not just post)</div><div class="kbox-item"><span class="kbox-dot" style="background:var(--slate)"></span>Share case studies + results (Authority content)</div></div><div class="kbox-footer"><span class="kbox-status">Coming soon</span><span class="kbox-gdrive">Google Drive ↗</span></div></div></div>
   </div>
 </div><!-- /panel-social -->
 
@@ -1138,19 +1136,22 @@ function toggleBox(id){
 
 /* KEYWORD TABLE */
 var KW_DATA=[
-  {kw:'[keyword - attract]',stage:'attract',vol:0,diff:25,bv:1,ct:'Blog Article',page:'/blog/[keyword]',cta:'Read More',pri:'P3',done:false},
-  {kw:'[keyword - engage]',stage:'engage',vol:0,diff:35,bv:2,ct:'Comparison / Guide',page:'/blog/[comparison]',cta:'Download Guide',pri:'P2',done:false},
-  {kw:'[keyword - convert]',stage:'convert',vol:0,diff:45,bv:3,ct:'Landing Page',page:'/service/[keyword]',cta:'Contact Us',pri:'P1',done:false},
-  {kw:'[keyword - authority]',stage:'authority',vol:0,diff:15,bv:3,ct:'Case Study',page:'/case-studies/[project]',cta:'View Case Studies',pri:'P1',done:false}
+  {kw:'[broad topic keyword]',stage:'attract',vol:2400,diff:24,ct:'Blog (educational)',outline:'#',url:'/blog/[slug]',cta:'Read more →',tl:'Wk 1 · [Month]',status:'planned'},
+  {kw:'[comparison keyword]',stage:'engage',vol:880,diff:38,ct:'Comparison / Guide',outline:'#',url:'/blog/[slug-vs]',cta:'Download →',tl:'Wk 2 · [Month]',status:'draft'},
+  {kw:'[hire / service keyword]',stage:'convert',vol:320,diff:45,ct:'Service / Landing page',outline:'#',url:'/service/[slug]',cta:'Contact us →',tl:'Wk 1 · [Month]',status:'review'},
+  {kw:'[brand / project keyword]',stage:'authority',vol:140,diff:15,ct:'Case Study',outline:'#',url:'/case-studies/[slug]',cta:'View cases →',tl:'Wk 3 · [Month]',status:'published'}
 ];
 var kwFilter='all';
 
 function stageClass(s){return{attract:'sp-attract',engage:'sp-engage',convert:'sp-convert',authority:'sp-authority'}[s]||'';}
-function stageLabel(s){return s.charAt(0).toUpperCase()+s.slice(1);}
-function diffClass(d){return d<=30?'diff-low':d<=60?'diff-med':'diff-high';}
-function priClass(p){return{P1:'pri-p1',P2:'pri-p2',P3:'pri-p3'}[p]||'pri-p3';}
-function bvHtml(v){var h='<div class="bv">';for(var i=1;i<=3;i++)h+='<div class="bv-dot '+(i<=v?'bv-on':'bv-off')+'"></div>';return h+'</div>';}
-function diffBarHtml(d){var dc=diffClass(d);return'<div class="diff-wrap"><div class="diff-bar '+dc+'"><div class="diff-fill" style="width:'+d+'%"></div></div><span style="font-size:10px;color:var(--ink3)">'+d+'</span></div>';}
+function stageLabel(s){return{attract:'Attract',engage:'Engage',convert:'Convert',authority:'Authority'}[s]||s;}
+function stageSub(s){return{attract:'TOFU · Awareness',engage:'MOFU · Consideration',convert:'BOFU · Decision',authority:'Trust · Cross-funnel'}[s]||'';}
+function diffColor(d){return d<=30?'#3B6D11':d<=60?'#BA7517':'#A32D2D';}
+function statusHtml(s){
+  var map={planned:{cls:'sp-attract',label:'Planned'},draft:{cls:'sp-authority',label:'Draft'},review:{cls:'sp-convert',label:'In review'},published:{cls:'sp-engage',label:'Published'}};
+  var m=map[s]||map['planned'];
+  return '<span class="stage-pill '+m.cls+'">'+m.label+'</span>';
+}
 
 function renderKW(){
   var tbody=document.getElementById('kw-tbody');
@@ -1160,25 +1161,28 @@ function renderKW(){
   KW_DATA.forEach(function(r,i){
     var show=kwFilter==='all'||r.stage===kwFilter;
     var tr=document.createElement('tr');
-    if(!show) tr.className='kw-hidden'; else visible++;
+    tr.className='kw-table-row'+(show?'':' kw-hidden');
+    if(show) visible++;
     tr.innerHTML=
-      '<td><span class="kw-kw">'+r.kw+'</span></td>'+
-      '<td><span class="stage-pill '+stageClass(r.stage)+'">'+stageLabel(r.stage)+'</span></td>'+
-      '<td style="color:var(--ink2);font-weight:600">'+(r.vol||'—')+'</td>'+
-      '<td>'+diffBarHtml(r.diff)+'</td>'+
-      '<td>'+bvHtml(r.bv)+'</td>'+
-      '<td style="color:var(--ink2)">'+r.ct+'</td>'+
-      '<td style="font-size:10px;color:var(--slate)">'+r.page+'</td>'+
-      '<td style="font-size:10px;color:var(--ink2)">'+r.cta+'</td>'+
-      '<td><span class="pri '+priClass(r.pri)+'">'+r.pri+'</span></td>'+
-      '<td><label style="display:flex;align-items:center;gap:4px;cursor:pointer;font-size:10px;color:var(--ink3)"><input type="checkbox" '+(r.done?'checked':'')+' onchange="toggleKWDone('+i+',this)" style="accent-color:var(--slate);width:12px;height:12px"> '+(r.done?'<s>Done</s>':'Pending')+'</label></td>';
+      '<td style="font-weight:700;color:var(--ink);font-size:11px;word-break:break-word">'+r.kw+'</td>'+
+      '<td><span class="stage-pill '+stageClass(r.stage)+'">'+stageLabel(r.stage)+'</span><div style="font-size:9px;color:var(--ink3);margin-top:2px">'+stageSub(r.stage)+'</div></td>'+
+      '<td style="font-weight:700;color:'+diffColor(r.diff)+';font-size:11px">'+(r.diff||'—')+'</td>'+
+      '<td style="font-size:11px;color:var(--ink2)">'+r.ct+'</td>'+
+      '<td><a href="'+r.outline+'" style="font-size:10px;font-weight:700;color:var(--slate);padding:2px 7px;border:1px solid var(--slate3);border-radius:6px;background:var(--slate3);text-decoration:none;white-space:nowrap" onclick="return false">View ↗</a></td>'+
+      '<td style="font-size:10px;color:var(--slate);font-family:monospace;word-break:break-all">'+r.url+'</td>'+
+      '<td style="font-size:10px;color:var(--ink3);white-space:nowrap">'+r.tl+'</td>'+
+      '<td>'+statusHtml(r.status)+'</td>'+
+      '<td><button class="kw-del-btn" onclick="deleteKWRow('+i+')">✕</button></td>';
     tbody.appendChild(tr);
   });
   var cnt=document.getElementById('kw-count');
   if(cnt) cnt.textContent=visible+' of '+KW_DATA.length+' rows';
 }
 
-function toggleKWDone(i,cb){KW_DATA[i].done=cb.checked;renderKW();}
+function deleteKWRow(i){
+  KW_DATA.splice(i,1);
+  renderKW();
+}
 
 function filterKW(stage,btn){
   kwFilter=stage;
@@ -1190,7 +1194,7 @@ function filterKW(stage,btn){
 function addKWRow(){
   var stages=['attract','engage','convert','authority'];
   var n=KW_DATA.length+1;
-  KW_DATA.push({kw:'[keyword '+n+']',stage:stages[(n-1)%4],vol:0,diff:0,bv:1,ct:'Blog Article',page:'/blog/keyword-'+n,cta:'Read More',pri:'P3',done:false});
+  KW_DATA.push({kw:'[keyword '+n+']',stage:stages[(n-1)%4],vol:0,diff:0,ct:'Blog (educational)',outline:'#',url:'/blog/[slug]',cta:'Read more →',tl:'— · [Month]',status:'planned'});
   renderKW();
 }
 
